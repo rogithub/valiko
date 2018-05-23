@@ -1,0 +1,23 @@
+{
+  "name": "valiko",
+  "version": "1.0.0",
+  "description": "validation utils for knockout",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogithub/valiko.git"
+  },
+  "keywords": [
+    "knockout",
+    "validation"
+  ],
+  "author": "Rodrigo Jimenez <correo.rodrigo@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/rogithub/valiko/issues"
+  },
+  "homepage": "https://github.com/rogithub/valiko#readme"
+}
