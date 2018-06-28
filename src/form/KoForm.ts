@@ -11,7 +11,7 @@ class KoForm extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IF
     
     public value: KnockoutObservableArray<IFieldBase<any, any>>;    
     
-    constructor(validators: interfaces.IFieldValidator<IFieldBase<any, any>[]>[] = [new ValidatableValidator<IFieldBase<any, any>>("Encontramos un error en alguno de sus campos.")]) {
+    constructor(validators: interfaces.IFieldValidator<IFieldBase<any, any>[]>[] = [new ValidatableValidator<IFieldBase<any, any>>("Please fix all errors.")]) {
         super(validators, true, []);
         this.value = ko.observableArray<IFieldBase<any, any>>();
     }
