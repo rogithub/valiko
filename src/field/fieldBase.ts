@@ -6,7 +6,7 @@ import IFieldBase = require("./iFieldBase");
 
 abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>, T> implements IFieldBase<Ko, T>, interfaces.IValidatable {
     public validators: interfaces.IFieldValidator<T | T[]>[];
-    public value: Ko;
+    public abstract value: Ko;
     public errors: KnockoutObservableArray<string>;
     public hasChanged: KnockoutComputed<boolean>;
     public hasError: KnockoutComputed<boolean>;    

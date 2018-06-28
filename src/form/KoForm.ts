@@ -1,11 +1,11 @@
-﻿import * as interfaces from './../validators/validatorInterfaces';
+﻿import * as interfaces from './../validator/interfaces';
 import IField = require("./../field/iField");
 import Field = require("./../field/field");
 import IFieldBase = require("./../field/iFieldBase");
 import FieldBase = require("./../field/fieldBase");
 import IFieldArray = require("./../field/iFieldArray");
 import FieldArray = require("./../field/FieldArray");
-import ValidatableValidator = require("./../validators/ValidatableValidator");
+import ValidatableValidator = require("../validator/validatableValidator");
 
 class KoForm extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IFieldBase<any, any>> {    
     
@@ -34,7 +34,7 @@ class KoForm extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IF
         return false;
     }
 
-    public addField<T>(validators: interfaces.IFieldValidator<T>[], useStrictForComparations: boolean = true, value?: T): IField<T> {
+    public addField<T>(validators: interfaces.IFieldValidator<T>[], useStrictForComparations: boolean = true, value: T): IField<T> {
         const self = this;
 
         let field: IField<T> = new Field<T>(validators, useStrictForComparations, value);

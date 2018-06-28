@@ -1,4 +1,4 @@
-﻿import * as interfaces from './validatorInterfaces';
+﻿import * as interfaces from './interfaces';
 import ValidatorBase = require("./validatorBase");
 
 
@@ -14,7 +14,7 @@ class ValidatableValidator<T extends interfaces.IValidatable> extends ValidatorB
         const self = this;
         let isValid = true;
 
-        if (value === null || value === undefined || !$.isArray(value)) {
+        if (value === null || value === undefined) {
             return self.toPromise(isValid, self.message);
         }
 

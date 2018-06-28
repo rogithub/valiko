@@ -1,5 +1,5 @@
 ﻿import * as interfaces from './validatorInterfaces';
-import PromiseUtils = require("./../utils/PromiseUtils");
+import PromiseUtils = require("./../utils/promiseUtils");
 
 abstract class ValidatorBase<T> implements interfaces.IFieldValidator<T> {
 
