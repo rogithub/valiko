@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "validation utils for knockout",
   "browser": "valiko-min.js",
+  "main": "lib/index",
+  "types": "lib/index",
   "scripts": {
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +23,13 @@
   "bugs": {
     "url": "https://github.com/rogithub/valiko/issues"
   },
-  "homepage": "https://github.com/rogithub/valiko#readme"
+  "homepage": "https://github.com/rogithub/valiko#readme",
+  "devDependencies": {
+    "@types/knockout": "^3.4.57",
+    "@types/node": "^10.5.0",
+    "knockout": "^3.4.2",
+    "nodemon": "^1.17.5",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
+  }
 }
