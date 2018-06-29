@@ -7,8 +7,8 @@ import FieldBase = require("./fieldBase");
 class FieldArray<T> extends FieldBase<KnockoutObservableArray<T>, T> implements IFieldArray<T> {    
     public value: KnockoutObservableArray<T>;
 
-    constructor(validators: interfaces.IFieldValidator<T[]>[], useStrictForComparations: boolean = true, value?: T[]) {
-        super(validators, useStrictForComparations, value);        
+    constructor(validators: interfaces.IFieldValidator<T[]>[], value?: T[]) {
+        super(validators, value);        
         this.value = ko.observableArray<T>(value);
 
         // =========================================================================
@@ -19,15 +19,6 @@ class FieldArray<T> extends FieldBase<KnockoutObservableArray<T>, T> implements 
         //     //self.validate();
         // }, self, "arrayChange");
         // =========================================================================
-    }
-
-    protected getHasChanged(): boolean {
-        throw new Error("Not implemented exception");
-    }
-
-    public resetHasChanged(): void {
-        const self = this;
-        self.initialValue = self.value();
     }    
 }
 

@@ -12,7 +12,7 @@ class KoForm extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IF
     public value: KnockoutObservableArray<IFieldBase<any, any>>;    
     
     constructor(validators: interfaces.IFieldValidator<IFieldBase<any, any>[]>[] = [new ValidatableValidator<IFieldBase<any, any>>("Please fix all errors.")]) {
-        super(validators, true, []);
+        super(validators, []);
         this.value = ko.observableArray<IFieldBase<any, any>>();
     }
 
@@ -34,20 +34,20 @@ class KoForm extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IF
         return false;
     }
 
-    public addField<T>(validators: interfaces.IFieldValidator<T>[], useStrictForComparations: boolean = true, value: T): IField<T> {
+    public addField<T>(validators: interfaces.IFieldValidator<T>[], value: T): IField<T> {
         const self = this;
 
-        let field: IField<T> = new Field<T>(validators, useStrictForComparations, value);
+        let field: IField<T> = new Field<T>(validators, value);
 
         self.value.push(field);
 
         return field;
     }
 
-    public addFieldArray<T>(validators: interfaces.IFieldValidator<T[]>[], useStrictForComparations: boolean = true, value?: T[]): IFieldArray<T> {
+    public addFieldArray<T>(validators: interfaces.IFieldValidator<T[]>[], value?: T[]): IFieldArray<T> {
         const self = this;                
 
-        let field: IFieldArray<T> = new FieldArray<T>(validators, useStrictForComparations, value);
+        let field: IFieldArray<T> = new FieldArray<T>(validators, value);
 
         self.value.push(field);
 

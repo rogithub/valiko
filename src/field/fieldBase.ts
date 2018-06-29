@@ -10,17 +10,12 @@ abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableAr
     public errors: KnockoutObservableArray<string>;
     public hasChanged: KnockoutComputed<boolean>;
     public hasError: KnockoutComputed<boolean>;    
-    public abstract resetHasChanged(): void;
-    protected abstract getHasChanged(): boolean;
-    protected useStrictForComparations: boolean;
-
     protected initialValue?: T | T[];
 
-    constructor(validators: interfaces.IFieldValidator<T | T[]>[], useStrictForComparations: boolean, value?: T | T[]) {
+    constructor(validators: interfaces.IFieldValidator<T | T[]>[], value?: T | T[]) {
         this.validators = validators;
         this.initialValue = value;        
 
-        this.useStrictForComparations = useStrictForComparations;
         this.errors = ko.observableArray<string>([]);
 
         const self = this;        
@@ -49,6 +44,18 @@ abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableAr
         }
 
         return PromiseUtils.toPromise(isValid);
+    }
+
+    protected getHasChanged(): boolean {
+        const self = this;
+        let changedVal = (self.initialValue !== self.value());
+
+        return changedVal;
+    }
+
+    public resetHasChanged(): void {
+        const self = this;
+        self.initialValue = self.value();
     }
 }
 
