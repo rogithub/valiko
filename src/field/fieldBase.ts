@@ -1,18 +1,18 @@
 ﻿import ko = require('knockout');
-import * as interfaces from './../validator/interfaces';
+import { IValidatable } from './../validator/interfaces';
+import { IFieldValidator } from './../validator/interfaces';
+import { IFieldBase } from "./interfaces";
 import PromiseUtils = require('./../utils/promiseUtils');
-import IFieldBase = require("./iFieldBase");
 
-
-abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>, T> implements IFieldBase<Ko, T>, interfaces.IValidatable {
-    public validators: interfaces.IFieldValidator<T | T[]>[];
+abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>, T> implements IFieldBase<Ko, T>, IValidatable {
+    public validators: IFieldValidator<T | T[]>[];
     public abstract value: Ko;
     public errors: KnockoutObservableArray<string>;
     public hasChanged: KnockoutComputed<boolean>;
     public hasError: KnockoutComputed<boolean>;    
     protected initialValue?: T | T[];
 
-    constructor(validators: interfaces.IFieldValidator<T | T[]>[], value?: T | T[]) {
+    constructor(validators: IFieldValidator<T | T[]>[], value?: T | T[]) {
         this.validators = validators;
         this.initialValue = value;        
 

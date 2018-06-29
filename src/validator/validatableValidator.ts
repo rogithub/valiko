@@ -1,8 +1,9 @@
-﻿import * as interfaces from './interfaces';
+﻿import { IValidatable } from './interfaces';
+import { IValidationResult } from './interfaces';
 import ValidatorBase = require("./validatorBase");
 
 
-class ValidatableValidator<T extends interfaces.IValidatable> extends ValidatorBase<T[]> {
+class ValidatableValidator<T extends IValidatable> extends ValidatorBase<T[]> {
     private message: string;
 
     constructor(message: string) {
@@ -10,7 +11,7 @@ class ValidatableValidator<T extends interfaces.IValidatable> extends ValidatorB
         this.message = message;
     }
 
-    public async check(value?: T[]): Promise<interfaces.IValidationResult> {
+    public async check(value?: T[]): Promise<IValidationResult> {
         const self = this;
         let isValid = true;
 
