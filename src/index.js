@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var koForm = require("./form/koForm");
 var Valiko = /** @class */ (function () {
     function Valiko() {
