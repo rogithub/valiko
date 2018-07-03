@@ -4,6 +4,9 @@ import { IFieldValidator } from './../validator/interfaces';
 import { IFieldBase } from "./interfaces";
 import PromiseUtils = require('./../utils/promiseUtils');
 
+/**
+ * Base class for fields.
+ */
 abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>, T> implements IFieldBase<Ko, T>, IValidatable {
     public validators: IFieldValidator<T | T[]>[];
     public abstract value: Ko;
@@ -28,6 +31,9 @@ abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableAr
         }, self);
     }
 
+    /**
+     * Applies existing validators on current value.
+     */
     public async validate(): Promise<boolean> {
         const self = this;
         self.errors.removeAll();
@@ -46,6 +52,9 @@ abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableAr
         return PromiseUtils.toPromise(isValid);
     }
 
+    /**
+     * True if current value is distinct of initial value.
+     */
     protected getHasChanged(): boolean {
         const self = this;
         let changedVal = (self.initialValue !== self.value());
@@ -53,6 +62,9 @@ abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableAr
         return changedVal;
     }
 
+    /**
+     * Assigns the current value to initialValue.
+     */
     public resetHasChanged(): void {
         const self = this;
         self.initialValue = self.value();
