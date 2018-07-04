@@ -11,7 +11,9 @@ declare class Field<T> extends FieldBase<KnockoutObservable<T>, T> implements IF
      * Constructs a field with a single value.
      * @param validators Applied on this field when its value changes.
      * @param value Initial value.
+     * @param autovalidate If true trigers validation on value change.
+     * @param onValidation Notifies validation results.
      */
-    constructor(validators: IFieldValidator<T>[], value: T);
+    constructor(validators: IFieldValidator<T>[], value: T, autovalidate?: boolean, onValidation?: (result: boolean) => void);
 }
 export = Field;

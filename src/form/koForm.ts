@@ -54,10 +54,10 @@ class KoForm extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IF
     /**
      * Adds a new field to this form object.
      */
-    public addField<T>(validators: IFieldValidator<T>[], value: T): IField<T> {
+    public addField<T>(validators: IFieldValidator<T>[], value: T, autovalidate : boolean = true, onValidation?: (result: boolean) => void): IField<T> {
         const self = this;
 
-        let field: IField<T> = new Field<T>(validators, value);
+        let field: IField<T> = new Field<T>(validators, value, autovalidate, onValidation);
 
         self.value.push(field);
 
@@ -67,10 +67,10 @@ class KoForm extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IF
     /**
      * Adds a new field array to this form object.
      */
-    public addFieldArray<T>(validators: IFieldValidator<T[]>[], value?: T[]): IFieldArray<T> {
+    public addFieldArray<T>(validators: IFieldValidator<T[]>[], value: T[] = [], autovalidate: boolean = false, onValidation?: (result: boolean) => void): IFieldArray<T> {
         const self = this;                
 
-        let field: IFieldArray<T> = new FieldArray<T>(validators, value);
+        let field: IFieldArray<T> = new FieldArray<T>(validators, value, autovalidate, onValidation);
 
         self.value.push(field);
 

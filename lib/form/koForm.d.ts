@@ -25,10 +25,10 @@ declare class KoForm extends FieldBase<KnockoutObservableArray<IFieldBase<any, a
     /**
      * Adds a new field to this form object.
      */
-    addField<T>(validators: IFieldValidator<T>[], value: T): IField<T>;
+    addField<T>(validators: IFieldValidator<T>[], value: T, autovalidate?: boolean, onValidation?: (result: boolean) => void): IField<T>;
     /**
      * Adds a new field array to this form object.
      */
-    addFieldArray<T>(validators: IFieldValidator<T[]>[], value?: T[]): IFieldArray<T>;
+    addFieldArray<T>(validators: IFieldValidator<T[]>[], value?: T[], autovalidate?: boolean, onValidation?: (result: boolean) => void): IFieldArray<T>;
 }
 export = KoForm;

@@ -11,7 +11,9 @@ declare class FieldArray<T> extends FieldBase<KnockoutObservableArray<T>, T> imp
      * Constructs a field with multiple values.
      * @param validators Applied on this field when "validate" method is called.
      * @param value Initial value.
+     * @param autovalidate If true trigers validation on value change.
+     * @param validationSubscribe Notifies validation results.
      */
-    constructor(validators: IFieldValidator<T[]>[], value?: T[]);
+    constructor(validators: IFieldValidator<T[]>[], value?: T[], autovalidate?: boolean, onValidation?: (result: boolean) => void);
 }
 export = FieldArray;

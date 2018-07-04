@@ -13,19 +13,22 @@ class FieldArray<T> extends FieldBase<KnockoutObservableArray<T>, T> implements 
      * Constructs a field with multiple values.
      * @param validators Applied on this field when "validate" method is called.
      * @param value Initial value.
+     * @param autovalidate If true trigers validation on value change.
+     * @param validationSubscribe Notifies validation results.
      */
-    constructor(validators: IFieldValidator<T[]>[], value?: T[]) {
+    constructor(validators: IFieldValidator<T[]>[], value: T[] = [], autovalidate: boolean = false, onValidation?: (result: boolean) => void) {
         super(validators, value);        
         this.value = ko.observableArray<T>(value);
-
-        // =========================================================================
-        // "arrayChange": Please subscribe on the cosumer class.
-        // =========================================================================        
-        // const self = this;
-        // this.value.subscribe(function (changes: KnockoutArrayChange<T>): void {
-        //     //self.validate();
-        // }, self, "arrayChange");
-        // =========================================================================
+        
+        if (autovalidate) {            
+            const self = this;
+            self.value.subscribe(function (changes: KnockoutArrayChange<T>): void {
+                let promise = self.validate();
+                if (onValidation !== undefined && onValidation !== null) {
+                    promise.then(onValidation);
+                }
+            }, self, "arrayChange");
+        }       
     }    
 }
 
