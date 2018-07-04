@@ -59,10 +59,7 @@ describe('Model default validator', function() {
                     done();
                 });
             });
-        });
-        
-        
-
+        });            
     });    
   });
 });
