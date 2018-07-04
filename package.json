@@ -32,5 +32,8 @@
     "nodemon": "^1.17.5",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2"
+  },
+  "peerDependencies": {
+    "knockout": "^3.4.2"
   }
 }
