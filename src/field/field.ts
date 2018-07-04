@@ -7,7 +7,7 @@ import FieldBase = require("./fieldBase");
  * Represents a field in the form with a single value.
  */
 class Field<T> extends FieldBase<KnockoutObservable<T>, T> implements IField<T> {        
-    public value: KnockoutObservable<T>;        
+    public value: KnockoutObservable<T>;            
 
     /**
      * Constructs a field with a single value.

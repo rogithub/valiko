@@ -31,7 +31,8 @@ describe('Model with one field', function() {
 
         assert.deepEqual(model.value(), [field]);
         assert.deepEqual(model.validators, [{"message": "Please fix all errors."}]);
-        assert.deepEqual(model.errors(), []);        
+        assert.deepEqual(model.errors(), []); 
+        assert.equal(field.hasError(), false);
         
         model.validate();
 
@@ -57,6 +58,7 @@ describe('Model with one field', function() {
         assert.deepEqual(model.value(), [field]);
         assert.deepEqual(model.validators, [{"message": "Please fix all errors."}]);
         assert.deepEqual(model.errors(), []);
+        assert.equal(field.hasError(), false);
         
         
         var promise = model.validate();

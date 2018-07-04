@@ -31,7 +31,9 @@ describe('Model with one fieldArray', function() {
 
         assert.deepEqual(model.value(), [fieldArray]);
         assert.deepEqual(model.validators, [{"message": "Please fix all errors."}]);
-        assert.deepEqual(model.errors(), []);        
+        assert.deepEqual(model.errors(), []);  
+        assert.equal(model.hasError(), false);
+        assert.equal(fieldArray.hasError(), false);
         
         model.validate();
 
@@ -40,6 +42,7 @@ describe('Model with one fieldArray', function() {
           assert.equal(validationResult, true);
           assert.deepEqual(fieldArray.errors(), []);          
           assert.equal(model.hasError(), false);
+          assert.equal(fieldArray.hasError(), false);
           assert.equal(fieldArray.hasError(), false);
           done();
         });      
@@ -57,7 +60,8 @@ describe('Model with one fieldArray', function() {
         assert.deepEqual(model.value(), [fieldArray]);
         assert.deepEqual(model.validators, [{"message": "Please fix all errors."}]);
         assert.deepEqual(model.errors(), []);
-        
+        assert.equal(model.hasError(), false);
+        assert.equal(fieldArray.hasError(), false);
         
         var promise = model.validate();
         promise.then(function(validationResult) {

@@ -13,11 +13,11 @@ abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableAr
     public errors: KnockoutObservableArray<string>;
     public hasChanged: KnockoutComputed<boolean>;
     public hasError: KnockoutComputed<boolean>;    
-    protected initialValue?: T | T[];
+    protected initialValue: string;
 
     constructor(validators: IFieldValidator<T | T[]>[], value?: T | T[]) {
         this.validators = validators;
-        this.initialValue = value;        
+        this.initialValue = JSON.stringify(value);        
 
         this.errors = ko.observableArray<string>([]);
 
@@ -57,7 +57,7 @@ abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableAr
      */
     protected getHasChanged(): boolean {
         const self = this;
-        let changedVal = (self.initialValue !== self.value());
+        let changedVal = (self.initialValue !== JSON.stringify(self.value()));
 
         return changedVal;
     }
@@ -67,7 +67,7 @@ abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableAr
      */
     public resetHasChanged(): void {
         const self = this;
-        self.initialValue = self.value();
+        self.initialValue = JSON.stringify(self.value());
     }
 }
 

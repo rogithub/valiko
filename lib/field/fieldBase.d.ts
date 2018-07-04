@@ -11,7 +11,7 @@ declare abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObse
     errors: KnockoutObservableArray<string>;
     hasChanged: KnockoutComputed<boolean>;
     hasError: KnockoutComputed<boolean>;
-    protected initialValue?: T | T[];
+    protected initialValue: string;
     constructor(validators: IFieldValidator<T | T[]>[], value?: T | T[]);
     /**
      * Applies existing validators on current value.
