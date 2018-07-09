@@ -20,15 +20,15 @@ class FieldArray<T> extends FieldBase<KnockoutObservableArray<T>, T> implements 
         super(validators, value);        
         this.value = ko.observableArray<T>(value);
         
-        if (autovalidate) {            
-            const self = this;
-            self.value.subscribe(function (changes: KnockoutArrayChange<T>): void {
-                let promise = self.validate();
-                if (onValidation !== undefined && onValidation !== null) {
-                    promise.then(onValidation);
-                }
-            }, self, "arrayChange");
-        }       
+        if (autovalidate === false) return;
+                    
+        const self = this;
+        self.value.subscribe(function (changes: KnockoutArrayChange<T>): void {
+            let promise = self.validate();
+            if (onValidation !== undefined && onValidation !== null) {
+                promise.then(onValidation);
+            }
+        }, self, "arrayChange");            
     }    
 }
 
