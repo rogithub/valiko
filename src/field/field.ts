@@ -1,4 +1,4 @@
-﻿import ko = require('knockout');
+﻿import * as ko from "knockout";
 import { IFieldValidator} from './../validator/interfaces';
 import { IField } from "./interfaces";
 import FieldBase = require("./fieldBase");
