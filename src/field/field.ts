@@ -22,7 +22,7 @@ class Field<T> extends FieldBase<KnockoutObservable<T>, T> implements IField<T> 
         this.value = ko.observable<T>(value);
         
         const self = this;
-        if (autovalidate == false) return;
+        if (autovalidate === false) return;
 
         this.value.subscribe(function (newValue: T): void {
             let promise = self.validate();
