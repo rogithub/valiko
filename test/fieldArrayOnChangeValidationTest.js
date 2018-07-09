@@ -1,5 +1,5 @@
 var assert = require('assert');
-var Model = require('../lib/index');
+var valiko = require('../lib/index');
 var PromiseUtils = require('../lib/utils/promiseUtils');
 
 var AutoValidator = {  
@@ -17,7 +17,7 @@ describe('Value changed', function() {
   describe('Changing value', function() {
     it('Should not be valid', function(done) {      
 
-        var model = new Model();
+        var model = new valiko.KoForm();
 
         var field = model.addFieldArray([AutoValidator], [1], true, function(isValid) {
             assert.equal(isValid, false);
@@ -40,7 +40,7 @@ describe('Value changed', function() {
     describe('Changing value', function() {
       it('Should be valid', function(done) {      
   
-        var model = new Model();
+        var model = new valiko.KoForm();
   
         var field = model.addField([AutoValidator], [], true, function(isValid) {
             assert.equal(isValid, true);            

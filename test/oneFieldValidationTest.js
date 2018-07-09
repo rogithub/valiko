@@ -1,5 +1,5 @@
 var assert = require('assert');
-var Model = require('../lib/index');
+var valiko = require('../lib/index');
 var PromiseUtils = require('../lib/utils/promiseUtils');
 
 var NotValidValidator = {  
@@ -26,7 +26,7 @@ describe('Model with one field', function() {
   describe('Adding field', function() {
     it('Should be valid', function(done) {      
 
-        var model = new Model();
+        var model = new valiko.KoForm();
         var field = model.addField([ValidValidator], true);
 
         assert.deepEqual(model.value(), [field]);
@@ -52,7 +52,7 @@ describe('Model with one field', function() {
   describe('Adding field', function() {
     it('Should NOT be valid', function(done) {      
 
-        var model = new Model();
+        var model = new valiko.KoForm();
         var field = model.addField([NotValidValidator], true);
 
         assert.deepEqual(model.value(), [field]);

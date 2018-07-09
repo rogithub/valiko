@@ -1,5 +1,5 @@
 var assert = require('assert');
-var Model = require('../lib/index');
+var valiko = require('../lib/index');
 var PromiseUtils = require('../lib/utils/promiseUtils');
 
 var AutoValidator = {  
@@ -17,7 +17,7 @@ describe('Model default validator', function() {
   describe('Global validation', function() {
     it('Should not be valid', function(done) {      
 
-        var model = new Model();
+        var model = new valiko.KoForm();
 
         var field = model.addField([AutoValidator], "test");
         var fieldArray = model.addFieldArray([AutoValidator], [1]);
