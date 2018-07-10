@@ -7,8 +7,8 @@ import {
 
 
 import Field from "./field/field";
-import FieldArray from "./field/field";
-import FieldBase from "./field/field";
+import FieldArray from "./field/fieldArray";
+import FieldBase from "./field/fieldBase";
 
 import {
     IValidatable,
@@ -20,7 +20,6 @@ import KoForm from "./form/koForm";
 import ValidatorBase from "./validator/validatorBase";
 
 import ValidatableValidator from   './validator/validatableValidator';
-
 
 export {
     FieldBase,
