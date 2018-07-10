@@ -26,7 +26,7 @@ describe('Model with one fieldArray', function() {
   describe('Adding fieldArray', function() {
     it('Should be valid', function(done) {      
 
-        var model = new valiko.KoForm();
+        var model = new valiko.FormBase();
         var fieldArray = model.addFieldArray([ValidValidator]);
 
         assert.deepEqual(model.value(), [fieldArray]);
@@ -54,7 +54,7 @@ describe('Model with one fieldArray', function() {
   describe('Adding fieldArray', function() {
     it('Should NOT be valid', function(done) {      
 
-        var model = new valiko.KoForm();
+        var model = new valiko.FormBase();
         var fieldArray = model.addFieldArray([NotValidValidator]);
 
         assert.deepEqual(model.value(), [fieldArray]);

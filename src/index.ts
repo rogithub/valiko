@@ -16,7 +16,7 @@ import {
     IFieldValidator
 } from "./validator/interfaces";
 
-import KoForm from "./form/koForm";
+import FormBase from "./form/formBase";
 import ValidatorBase from "./validator/validatorBase";
 
 import ValidatableValidator from   './validator/validatableValidator';
@@ -26,7 +26,7 @@ export {
     Field,
     FieldArray,
     // Concrete Classes
-    KoForm,
+    FormBase,
     ValidatorBase,
     ValidatableValidator,
     // Field Interfaces

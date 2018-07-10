@@ -17,7 +17,7 @@ describe('Value changed', function() {
   describe('Changing value', function() {
     it('Should not be valid', function(done) {      
 
-        var model = new valiko.KoForm();
+        var model = new valiko.FormBase();
 
         var field = model.addField([AutoValidator], true, true, function(isValid) {
             assert.equal(isValid, false);
@@ -40,7 +40,7 @@ describe('Value changed', function() {
     describe('Changing value', function() {
       it('Should be valid', function(done) {      
   
-        var model = new valiko.KoForm();
+        var model = new valiko.FormBase();
   
         var field = model.addField([AutoValidator], false, true, function(isValid) {
             assert.equal(isValid, true);            

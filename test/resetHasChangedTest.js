@@ -17,7 +17,7 @@ describe('Reset hasChanged', function() {
   describe('Changing values', function() {
     it('Resseting hasChanged', function() {      
 
-        var model = new valiko.KoForm();
+        var model = new valiko.FormBase();
 
         var field = model.addField([AutoValidator], "test");
         var fieldArray = model.addFieldArray([AutoValidator], [1]);

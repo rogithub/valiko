@@ -17,7 +17,7 @@ describe('Model default validator', function() {
   describe('Global validation', function() {
     it('Should not be valid', function(done) {      
 
-        var model = new valiko.KoForm();
+        var model = new valiko.FormBase();
 
         var field = model.addField([AutoValidator], "test");
         var fieldArray = model.addFieldArray([AutoValidator], [1]);

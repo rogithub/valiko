@@ -14,7 +14,7 @@ import ValidatableValidator = require("../validator/validatableValidator");
 /**
  * Represents a form with a collection of Fields.
  */
-class KoForm extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IFieldBase<any, any>> {    
+abstract class FormBase extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IFieldBase<any, any>> {    
     
     public value: KnockoutObservableArray<IFieldBase<any, any>>;    
     
@@ -78,4 +78,4 @@ class KoForm extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IF
     }
 }
 
-export = KoForm;
+export = FormBase;
