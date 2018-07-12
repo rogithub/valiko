@@ -67,6 +67,7 @@ interface IFieldArray<T> {
 }
 
 interface IFieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>, T> {
+
     /**
      * Value for current field.
      */

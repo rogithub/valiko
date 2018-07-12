@@ -5,7 +5,7 @@ import PromiseUtils = require("./../utils/promiseUtils");
 /**
  * Base class for validation rules.
  */
-abstract class ValidatorBase<T> implements IFieldValidator<T> {
+export abstract class ValidatorBase<T> implements IFieldValidator<T> {
 
     public abstract check(value?: T): Promise<IValidationResult>;
     
@@ -18,5 +18,3 @@ abstract class ValidatorBase<T> implements IFieldValidator<T> {
         return PromiseUtils.toPromise(result);
     }
 }
-
-export = ValidatorBase;

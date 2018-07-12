@@ -6,9 +6,9 @@ import {
 } from "./field/interfaces";
 
 
-import Field from "./field/field";
-import FieldArray from "./field/fieldArray";
-import FieldBase from "./field/fieldBase";
+import { Field } from "./field/field";
+import { FieldArray } from "./field/fieldArray";
+import { FieldBase } from "./field/fieldBase";
 
 import {
     IValidatable,
@@ -16,10 +16,10 @@ import {
     IFieldValidator
 } from "./validator/interfaces";
 
-import FormBase from "./form/formBase";
-import ValidatorBase from "./validator/validatorBase";
+import { FormBase } from "./form/formBase";
+import { ValidatorBase } from "./validator/validatorBase";
 
-import ValidatableValidator from   './validator/validatableValidator';
+import { ValidatableValidator } from './validator/validatableValidator';
 
 export {
     FieldBase,

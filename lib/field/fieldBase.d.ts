@@ -5,7 +5,7 @@ import { IFieldBase } from "./interfaces";
 /**
  * Base class for fields.
  */
-declare abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>, T> implements IFieldBase<Ko, T>, IValidatable {
+export declare abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>, T> implements IFieldBase<Ko, T>, IValidatable {
     validators: IFieldValidator<T | T[]>[];
     abstract value: Ko;
     errors: KnockoutObservableArray<string>;
@@ -26,4 +26,3 @@ declare abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObse
      */
     resetHasChanged(): void;
 }
-export = FieldBase;

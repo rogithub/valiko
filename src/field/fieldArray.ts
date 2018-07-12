@@ -1,12 +1,12 @@
 ﻿import * as ko from "knockout";
 import { IFieldValidator } from './../validator/interfaces';
 import { IFieldArray } from "./interfaces";
-import FieldBase = require("./fieldBase");
+import { FieldBase } from "./fieldBase";
 
 /**
  * Represents a field in the form with multiple values.
  */
-class FieldArray<T> extends FieldBase<KnockoutObservableArray<T>, T> implements IFieldArray<T> {    
+export class FieldArray<T> extends FieldBase<KnockoutObservableArray<T>, T> implements IFieldArray<T> {    
     public value: KnockoutObservableArray<T>;
 
     /**
@@ -31,5 +31,3 @@ class FieldArray<T> extends FieldBase<KnockoutObservableArray<T>, T> implements 
         }, self, "arrayChange");            
     }    
 }
-
-export = FieldArray;

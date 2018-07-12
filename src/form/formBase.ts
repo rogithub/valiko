@@ -6,15 +6,15 @@ import { IField } from "./../field/interfaces";
 import { IFieldBase } from "./../field/interfaces";
 import { IFieldArray } from "./../field/interfaces";
 
-import Field = require("./../field/field");
-import FieldBase = require("./../field/fieldBase");
-import FieldArray = require("../field/fieldArray");
-import ValidatableValidator = require("../validator/validatableValidator");
+import { Field } from "./../field/field";
+import { FieldBase } from "./../field/fieldBase";
+import { FieldArray } from "../field/fieldArray";
+import { ValidatableValidator } from "../validator/validatableValidator";
 
 /**
  * Represents a form with a collection of Fields.
  */
-abstract class FormBase extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IFieldBase<any, any>> {    
+export abstract class FormBase extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IFieldBase<any, any>> {    
     
     public value: KnockoutObservableArray<IFieldBase<any, any>>;    
     
@@ -77,5 +77,3 @@ abstract class FormBase extends FieldBase<KnockoutObservableArray<IFieldBase<any
         return field;
     }
 }
-
-export = FormBase;

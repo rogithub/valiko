@@ -3,11 +3,11 @@ import { IFieldValidator } from './../validator/interfaces';
 import { IField } from "./../field/interfaces";
 import { IFieldBase } from "./../field/interfaces";
 import { IFieldArray } from "./../field/interfaces";
-import FieldBase = require("./../field/fieldBase");
+import { FieldBase } from "./../field/fieldBase";
 /**
  * Represents a form with a collection of Fields.
  */
-declare abstract class FormBase extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IFieldBase<any, any>> {
+export declare abstract class FormBase extends FieldBase<KnockoutObservableArray<IFieldBase<any, any>>, IFieldBase<any, any>> {
     value: KnockoutObservableArray<IFieldBase<any, any>>;
     /**
      * Constructs a new form object.
@@ -31,4 +31,3 @@ declare abstract class FormBase extends FieldBase<KnockoutObservableArray<IField
      */
     addFieldArray<T>(validators: IFieldValidator<T[]>[], value?: T[], autovalidate?: boolean, onValidation?: (result: boolean) => void): IFieldArray<T>;
 }
-export = FormBase;

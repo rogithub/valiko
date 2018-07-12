@@ -1,12 +1,12 @@
 ﻿import * as ko from "knockout";
 import { IFieldValidator} from './../validator/interfaces';
 import { IField } from "./interfaces";
-import FieldBase = require("./fieldBase");
+import { FieldBase } from "./fieldBase";
 
 /**
  * Represents a field in the form with a single value.
  */
-class Field<T> extends FieldBase<KnockoutObservable<T>, T> implements IField<T> {        
+export class Field<T> extends FieldBase<KnockoutObservable<T>, T> implements IField<T> {        
     public value: KnockoutObservable<T>;            
 
     /**
@@ -33,5 +33,3 @@ class Field<T> extends FieldBase<KnockoutObservable<T>, T> implements IField<T> 
         
     } 
 }
-
-export = Field;

@@ -1,10 +1,10 @@
 import { IValidatable } from './interfaces';
 import { IValidationResult } from './interfaces';
-import ValidatorBase = require("./validatorBase");
+import { ValidatorBase } from "./validatorBase";
 /**
  * Validator that runs all validations on a IValidatable.
  */
-declare class ValidatableValidator<T extends IValidatable> extends ValidatorBase<T[]> {
+export declare class ValidatableValidator<T extends IValidatable> extends ValidatorBase<T[]> {
     private message;
     /**
      * Message to display if errors.
@@ -17,4 +17,3 @@ declare class ValidatableValidator<T extends IValidatable> extends ValidatorBase
      */
     check(value?: T[]): Promise<IValidationResult>;
 }
-export = ValidatableValidator;

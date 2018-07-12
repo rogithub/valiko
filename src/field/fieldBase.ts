@@ -7,7 +7,7 @@ import PromiseUtils = require('./../utils/promiseUtils');
 /**
  * Base class for fields.
  */
-abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>, T> implements IFieldBase<Ko, T>, IValidatable {
+export abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>, T> implements IFieldBase<Ko, T>, IValidatable {
     public validators: IFieldValidator<T | T[]>[];
     public abstract value: Ko;
     public errors: KnockoutObservableArray<string>;
@@ -70,5 +70,3 @@ abstract class FieldBase<Ko extends KnockoutObservable<T> | KnockoutObservableAr
         self.initialValue = JSON.stringify(self.value());
     }
 }
-
-export = FieldBase;
