@@ -1,6 +1,13 @@
 var assert = require('assert');
 var valiko = require('../lib/index');
-var PromiseUtils = require('../lib/utils/promiseUtils');
+
+var toPromise = function (value) {
+  const promise = new Promise((resolve) => {
+      resolve(value);
+  });
+
+  return promise;
+}
 
 var AutoValidator = {  
   check(value) {
@@ -9,7 +16,7 @@ var AutoValidator = {
       isValid: isValid,
       message: "This field is invalid"
     }
-    return PromiseUtils.toPromise(valid);
+    return toPromise(valid);
   }
 };
 

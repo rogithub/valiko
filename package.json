@@ -26,15 +26,15 @@
   },
   "homepage": "https://github.com/rogithub/valiko#readme",
   "devDependencies": {
-    "@types/knockout": "^3.4.57",
+    "@types/knockout": "^3.4.66",
     "@types/node": "^10.5.0",
-    "knockout": "^3.4.2",
+    "knockout": "^3.4.66",
     "mocha": "^5.2.0",
     "nodemon": "^1.17.5",
     "ts-node": "^7.0.0",
-    "typescript": "^2.9.2"
+    "typescript": "^3.5.3"
   },
   "peerDependencies": {
-    "knockout": "^3.4.2"
+    "knockout": "^3.4.66"
   }
 }
