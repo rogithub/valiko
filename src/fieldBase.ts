@@ -1,4 +1,5 @@
-﻿import { IValidatorRule, IFieldBase } from './interfaces'
+﻿import * as ko from "knockout";
+import { IValidatorRule, IFieldBase } from './interfaces'
 
 /**
  * Base class for fields.
@@ -19,8 +20,7 @@ export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutOb
 		this.wasValidated = ko.observable<boolean>(false);
 
 		const self = this;
-
-		this.hasError = ko.pureComputed<boolean>(function (): boolean {
+		self.hasError = ko.pureComputed<boolean>(function (): boolean {
 			return self.errors().length > 0;
 		}, self);
 	}

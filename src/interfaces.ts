@@ -1,3 +1,5 @@
+import * as ko from "knockout";
+
 interface IValidable {
 	validate(): Promise<boolean>;
 }

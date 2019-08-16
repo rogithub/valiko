@@ -1,4 +1,5 @@
-﻿import { IValidatorRule, IField, IFieldArray } from './interfaces';
+﻿import * as ko from "knockout";
+import { IValidatorRule, IField, IFieldArray } from './interfaces';
 import { DefaultFormValidator } from "./defaultFormValidator";
 import { Field } from "./field";
 import { FieldBase } from "./fieldBase";
