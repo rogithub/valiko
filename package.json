@@ -7,9 +7,8 @@
   "types": "lib/index",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build:live",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
-    "test": "mocha"
+    "start": "npm run build",
+    "test": "nyc mocha"
   },
   "repository": {
     "type": "git",
@@ -30,11 +29,13 @@
     "@types/node": "^10.5.0",
     "knockout": "^3.4.66",
     "mocha": "^5.2.0",
-    "nodemon": "^1.17.5",
     "ts-node": "^7.0.0",
     "typescript": "^3.5.3"
   },
   "peerDependencies": {
     "knockout": "^3.4.66"
+  },
+  "dependencies": {
+    "nyc": "^14.1.1"
   }
 }
