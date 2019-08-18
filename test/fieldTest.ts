@@ -1,9 +1,24 @@
 let assert = require("assert");
-import { Field } from '../src';
+import { Field, ValidatorBase } from '../src';
 import ko = require('knockout');
 let source = { ko: ko };
 Object.assign(global, source);
 //global.ko = ko;
+
+class StringRequired extends ValidatorBase<string> {
+	constructor() {
+		super("Required");
+	}
+
+	public check(value?: string): Promise<import("../src/interfaces").IValidationResult> {
+		const self = this;
+		if (value === null || value === undefined || value.length === 0) {
+			return self.toNotValid();
+		}
+
+		return self.toValid();
+	}
+}
 
 describe('Field', function() {
     describe('constructor', function() {
@@ -11,14 +26,23 @@ describe('Field', function() {
 			var fld = new Field([]);
 			assert.ok(fld.hasError() === false);
 			assert.equal(fld.value(), undefined);
-			done();
-		});
-		it('initialized() should be true after value chage', function(done) {
-			var fld = new Field([]);
+
 			fld.value(1);
 			assert.ok(fld.hasError() === false);
 			assert.equal(fld.value(), 1);
 			done();
+		});
+    });
+});
+
+
+describe('Field', function() {
+    describe('validation', function() {
+		it('should not be valid', function(done) {
+			var fld = new Field<string>([new StringRequired()]);
+			assert.equal(fld.value(), undefined);			
+			fld.value("");
+			fld.validate().then(valid => assert.equal(valid, false) ).then(done);
 		});
     });
 });
