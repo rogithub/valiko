@@ -15,7 +15,7 @@ import {
 } from './interfaces';
 
 import { DefaultFormValidator } from './defaultFormValidator';
-
+import { FormBase } from './formBase';
 
 export {
 	IValidable,
@@ -31,4 +31,5 @@ export {
 	FieldArray,
 	ValidatorBase,
 	DefaultFormValidator,
+	FormBase
 }

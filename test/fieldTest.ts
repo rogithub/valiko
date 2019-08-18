@@ -1,24 +1,10 @@
 let assert = require("assert");
-import { Field, ValidatorBase, IValidationResult } from '../src';
+import { Field } from '../src';
+import { StringRequired } from './stringRequired';
 import ko = require('knockout');
 let source = { ko: ko };
 Object.assign(global, source);
 //global.ko = ko;
-
-class StringRequired extends ValidatorBase<string> {
-	constructor() {
-		super("Required");
-	}
-
-	public check(value?: string): Promise<IValidationResult> {
-		const self = this;
-		if (value === null || value === undefined || value.length === 0) {
-			return self.toNotValid();
-		}
-
-		return self.toValid();
-	}
-}
 
 describe('Field', function() {
     describe('constructor', function() {
