@@ -1,5 +1,5 @@
 let assert = require("assert");
-import { FieldArray, ValidatorBase } from '../src';
+import { FieldArray, ValidatorBase, IValidationResult } from '../src';
 import ko = require('knockout');
 let source = { ko: ko };
 Object.assign(global, source);
@@ -7,7 +7,7 @@ Object.assign(global, source);
 
 class ArrayRequired extends ValidatorBase<number[]> {
 
-	public check(value?: number[]): Promise<import("../src/interfaces").IValidationResult> {
+	public check(value?: number[]): Promise<IValidationResult> {
 		const self = this;
 		return self.toResult(value.length > 0);
 	}

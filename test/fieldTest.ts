@@ -1,5 +1,5 @@
 let assert = require("assert");
-import { Field, ValidatorBase } from '../src';
+import { Field, ValidatorBase, IValidationResult } from '../src';
 import ko = require('knockout');
 let source = { ko: ko };
 Object.assign(global, source);
@@ -10,7 +10,7 @@ class StringRequired extends ValidatorBase<string> {
 		super("Required");
 	}
 
-	public check(value?: string): Promise<import("../src/interfaces").IValidationResult> {
+	public check(value?: string): Promise<IValidationResult> {
 		const self = this;
 		if (value === null || value === undefined || value.length === 0) {
 			return self.toNotValid();
