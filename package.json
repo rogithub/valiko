@@ -30,12 +30,10 @@
     "knockout": "^3.4.66",
     "mocha": "^5.2.0",
     "ts-node": "^7.0.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "nyc": "^14.1.1"
   },
   "peerDependencies": {
     "knockout": "^3.4.66"
-  },
-  "dependencies": {
-    "nyc": "^14.1.1"
   }
 }
