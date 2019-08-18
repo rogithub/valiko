@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc",
     "start": "npm run build",
-    "test": "nyc mocha"
+    "test": "tsc && nyc mocha"
   },
   "nyc": {
     "include": [
