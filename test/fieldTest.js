@@ -1,6 +1,6 @@
 var assert = require("assert");
 var vko = require('../lib');
-require('knockout');
+global.ko = require('knockout');
 
 describe('Field test', function() {
     describe('init', function() {
