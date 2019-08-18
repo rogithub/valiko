@@ -1,5 +1,3 @@
-import * as ko from "knockout";
-
 interface IValidable {
 	validate(): Promise<boolean>;
 }
@@ -18,14 +16,13 @@ interface IValidationInfo<T> {
      * Error list of current value.
      */
 	errors: KnockoutObservableArray<string>;
-    /**
+	/**
      * True if there are errors on current value.
      */
 	hasError: KnockoutComputed<boolean>;
-
 	/**
 	 * true if was validated
-	 * */
+	 */
 	wasValidated: KnockoutObservable<boolean>;
 }
 

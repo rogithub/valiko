@@ -1,4 +1,4 @@
-﻿import * as ko from "knockout";
+﻿
 import { IValidatorRule, IFieldBase } from './interfaces'
 
 /**
@@ -8,9 +8,9 @@ export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutOb
 	public validators: IValidatorRule<T | T[]>[];
 	public abstract value: Ko;
 	public errors: KnockoutObservableArray<string>;
-	public hasError: KnockoutComputed<boolean>;
 	protected initialized: KnockoutObservable<boolean>;
 	public wasValidated: KnockoutObservable<boolean>;
+	public hasError: KnockoutComputed<boolean>;
 
 	constructor(validators: IValidatorRule<T | T[]>[]) {
 		this.validators = validators;
@@ -18,7 +18,7 @@ export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutOb
 		this.errors = ko.observableArray<string>([]);
 		this.initialized = ko.observable<boolean>(false);
 		this.wasValidated = ko.observable<boolean>(false);
-
+		
 		const self = this;
 		self.hasError = ko.pureComputed<boolean>(function (): boolean {
 			return self.errors().length > 0;

@@ -1,4 +1,4 @@
-﻿import * as ko from "knockout";
+﻿
 import { IValidatorRule } from './interfaces';
 import { FieldBase } from "./fieldBase";
 
