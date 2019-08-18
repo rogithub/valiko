@@ -10,6 +10,25 @@
     "start": "npm run build",
     "test": "nyc mocha"
   },
+  "nyc": {
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rogithub/valiko.git"
@@ -26,10 +45,12 @@
   "homepage": "https://github.com/rogithub/valiko#readme",
   "devDependencies": {
     "@types/knockout": "^3.4.66",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^10.5.0",
     "knockout": "^3.4.66",
     "mocha": "^5.2.0",
     "nyc": "^14.1.1",
+    "source-map-support": "^0.5.13",
     "ts-node": "^7.0.1",
     "typescript": "^3.5.3"
   },

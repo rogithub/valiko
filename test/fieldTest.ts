@@ -1,20 +1,21 @@
-var assert = require("assert");
-var vko = require('../lib');
-global.ko = require('knockout');
+let assert = require("assert");
+import { Field } from '../src';
+import ko = require('knockout');
+let source = { ko: ko };
+Object.assign(global, source);
+//global.ko = ko;
 
 describe('Field', function() {
     describe('constructor', function() {
 		it('initialized() should be false for new obj', function(done) {
-			var fld = new vko.Field([]);
-			assert.ok(fld.initialized() === false);	
+			var fld = new Field([]);
 			assert.ok(fld.hasError() === false);
 			assert.equal(fld.value(), undefined);
 			done();
 		});
 		it('initialized() should be true after value chage', function(done) {
-			var fld = new vko.Field([]);
+			var fld = new Field([]);
 			fld.value(1);
-			assert.ok(fld.initialized());
 			assert.ok(fld.hasError() === false);
 			assert.equal(fld.value(), 1);
 			done();
