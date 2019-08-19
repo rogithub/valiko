@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/rogithub/valiko.svg?branch=master)](https://travis-ci.org/rogithub/valiko)
+[![Coverage Status](https://coveralls.io/repos/github/rogithub/valiko/badge.svg?branch=master)](https://coveralls.io/github/rogithub/valiko?branch=master)
 
 # valiko
 
