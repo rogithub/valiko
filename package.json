@@ -7,7 +7,7 @@
   "types": "lib/index",
   "scripts": {
     "build": "tsc",
-    "test": "nyc mocha"
+    "test": "nyc mocha --require ts-node/register ./test/*.ts"
   },
   "nyc": {
     "include": [
@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/rogithub/valiko#readme",
   "devDependencies": {
-    "@types/knockout": "^3.4.66",
+    "@types/knockout": "file:node_modules/@types/knockout",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.7.2",
     "mocha": "^6.2.0",
