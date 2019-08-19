@@ -19,10 +19,7 @@ export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutOb
 		this.initialized = ko.observable<boolean>(false);
 		this.wasValidated = ko.observable<boolean>(false);
 		
-		const self = this;
-		self.hasError = ko.pureComputed<boolean>(function (): boolean {
-			return self.errors().length > 0;
-		}, self);
+		this.hasError = ko.pureComputed<boolean>(() => this.errors().length > 0, this) as unknown as KnockoutComputed<boolean>;
 	}
 
     /**
