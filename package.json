@@ -52,6 +52,6 @@
     "typescript": "^3.5.3"
   },
   "peerDependencies": {
-    "typescript": "^3.5.3"
+    "knockout": "^3.5.0"
   }
 }
