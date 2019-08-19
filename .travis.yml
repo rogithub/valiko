@@ -2,6 +2,6 @@ language: node_js
 node_js:
   - "stable"
 before_script:
-  - npm i knockout --no-save
+  - npm i knockout @types/knockout --no-save
   - npm install  
   - npm run build
