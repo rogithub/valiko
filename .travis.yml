@@ -3,6 +3,3 @@ node_js:
   - "stable"
 before_script:
   - npm run build
-cache:
-  directories:
-    - "node_modules"
