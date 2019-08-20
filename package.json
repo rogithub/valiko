@@ -1,6 +1,6 @@
 {
   "name": "valiko",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "validation utils for knockout",
   "browser": "valiko-min.js",
   "main": "lib/index",
