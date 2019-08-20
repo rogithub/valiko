@@ -33,18 +33,18 @@ externals: {
   import { ValidatorBase, IValidationResult } from 'valiko';
 
   export class StringRequired extends ValidatorBase<string> {
-      constructor() {
-          super("Required");
-      }
-
-      public check(value?: string): Promise<IValidationResult> {
-          const self = this;
-    if (value === null || value === undefined || value.length === 0) {
-        return self.toNotValid();
+    constructor() {
+      super("Required");
     }
 
-    return self.toValid();
-      }
+  public check(value?: string): Promise<IValidationResult> {
+    const self = this;
+    if (value === null || value === undefined || value.length === 0) {
+      return self.toNotValid();
+    }
+
+      return self.toValid();
+    }
   }
   ```
 
@@ -93,25 +93,25 @@ externals: {
 
   ```html
   <form data-bind="submit: $data.onSave.bind($data)" novalidate>
-
-        <textinput>
-          <div class="form-group">
-						<label for="txtName">Name</label>
-						<input type="text"
-							data-bind="textInput: name.value, 
-              css: { 'is-invalid': name.hasError(), 'is-valid': !name.hasError() && name.wasValidated() }"              
-							class="form-control" id="txtName" aria-describedby="name" placeholder="Name">
-						<div class="invalid-feedback">
-							<!-- ko foreach: name.errors -->
-							<span data-bind="text: $data"></span>
-							<!-- /ko -->
-						</div>
-					</div>
-          </textinput>
+    <textinput>
+      <div class="form-group">
+        <label for="txtName">Name</label>
         
-        <div class="float-right">            
-            <button type="submit" class="btn btn-outline-success">Save</button>
+        <input type="text" data-bind="textInput: name.value, 
+          css: { 'is-invalid': name.hasError(), 'is-valid': !name.hasError() && name.wasValidated() }"          
+          class="form-control" id="txtName" aria-describedby="name" placeholder="Name">
+
+        <div class="invalid-feedback">
+          <!-- ko foreach: name.errors -->
+          <span data-bind="text: $data"></span>
+          <!-- /ko -->
         </div>
-    </form>
+      </div>
+    </textinput>
+
+    <div class="float-right">            
+    <button type="submit" class="btn btn-outline-success">Save</button>
+    </div>
+  </form>
 
   ```
