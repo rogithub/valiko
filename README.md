@@ -58,7 +58,7 @@ externals: {
     name: string;
   }
 
-  class Form extends FormBase<Person> {
+  export class Form extends FormBase<Person> {
     public name: IField<string>;
 
     constructor() {
@@ -89,7 +89,7 @@ externals: {
 
   ```
 
-  3. Bind your model
+  3. Bind your Form model
 
   ```html
   <form data-bind="submit: $data.onSave.bind($data)" novalidate>
