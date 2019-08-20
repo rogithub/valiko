@@ -3,10 +3,24 @@
 
 # valiko
 
-valiko is a plugin that adds validation on top of [knockoutjs](http://knockoutjs.com/).
+valiko is a TypeScript plugin that adds validation on top of [knockoutjs](http://knockoutjs.com/).
 
 # Features
 
   - Custom validators
   - Field validation
   - Form validation
+
+
+# Instalation:
+  1. Create your web app.
+  2. Add knockout library to it
+  3. Add valiko `$ npm install valiko --save-dev`
+  4. If using webpack and declaring knockout on your html
+     add this to webpack.config.js
+
+```javascript
+externals: {
+  'ko': 'ko'
+}
+```
