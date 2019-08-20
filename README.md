@@ -7,6 +7,6 @@ valiko is a plugin that adds validation on top of [knockoutjs](http://knockoutjs
 
 # Features
 
-  - Custom validation classes
-  - Composite form validation
-  - Get notified when your field or form changes
+  - Custom validators
+  - Field validation
+  - Form validation
