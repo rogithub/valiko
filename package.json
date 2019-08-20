@@ -6,7 +6,7 @@
   "main": "lib/index",
   "types": "lib/index",
   "scripts": {
-      "build": "tsc",
+      "build": "rm -rf ./lib/ && tsc --declaration",
       "test": "nyc mocha ./test/*.ts && nyc report --reporter=text-lcov | coveralls"
   },
   "nyc": {
