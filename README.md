@@ -29,24 +29,89 @@ externals: {
 
   1. Create a validator by extending ValidatorBase
 
-```javascript
-import { ValidatorBase, IValidationResult } from 'valiko';
+  ```javascript
+  import { ValidatorBase, IValidationResult } from 'valiko';
 
-export class StringRequired extends ValidatorBase<string> {
+  export class StringRequired extends ValidatorBase<string> {
+      constructor() {
+          super("Required");
+      }
+
+      public check(value?: string): Promise<IValidationResult> {
+          const self = this;
+    if (value === null || value === undefined || value.length === 0) {
+        return self.toNotValid();
+    }
+
+    return self.toValid();
+      }
+  }
+  ```
+
+  2. Create a form by extending `FormBase<T>`
+
+  ```javascript
+
+  import { IField, FormBase } from 'valiko';
+
+  interface Person {
+    name: string;
+  }
+
+  class Form extends FormBase<Person> {
+    public name: IField<string>;
+
     constructor() {
-        super("Required");
+      super();
+      this.name = this.addField<string>([new StringRequired()]);
     }
 
-    public check(value?: string): Promise<IValidationResult> {
+    public load(model: Person): void {
+      const self = this;
+      this.name.value(model.name);
+    }	
+    
+    public retrieve(): Person {
+      const self = this;
+      return {
+        name: self.name.value()
+      }
+    }
+
+    public async onSave(): Promise<void> {
         const self = this;
-	if (value === null || value === undefined || value.length === 0) {
-	    return self.toNotValid();
-	}
-
-	return self.toValid();
+        let isValid = await self.validate();
+        if (isValid === false) return;
+        
+        // ... save logic
     }
-}
-```
+  }
 
-  2. Create a form.
+  ```
 
+  3. Bind your model
+
+  ```html
+  <form data-bind="submit: $data.onSave.bind($data)" novalidate>
+
+        <textinput>
+          <div class="form-group">
+						<label for="txtName">Name</label>
+						<input type="text"
+							data-bind="textInput: name.value, 
+              css: { 'is-invalid': name.hasError(), 'is-valid': !name.hasError() && name.wasValidated() }"              
+							class="form-control" id="txtName" aria-describedby="name" placeholder="Name">
+						<div class="invalid-feedback">
+							<!-- ko foreach: name.errors -->
+							<span data-bind="text: $data"></span>
+							<!-- /ko -->
+						</div>
+					</div>
+          </textinput>
+        
+        <div class="float-right">            
+            <button type="submit" class="btn btn-outline-success">Save</button>
+        </div>
+    </form>
+
+  ```
