@@ -1,13 +1,13 @@
 {
   "name": "valiko",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "validation utils for knockout",
   "browser": "valiko-min.js",
   "main": "lib/index",
   "types": "lib/index",
   "scripts": {
-    "build": "tsc",
-    "test": "nyc mocha ./test/*.ts && nyc report --reporter=text-lcov | coveralls"
+      "build": "tsc --declaration",
+      "test": "nyc mocha ./test/*.ts && nyc report --reporter=text-lcov | coveralls"
   },
   "nyc": {
     "include": [
