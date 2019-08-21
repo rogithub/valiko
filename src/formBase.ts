@@ -14,9 +14,9 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 
 
     /**
-     * Constructs a new form object.
-     * @param validators List of validation rules.
-     */
+	 * Constructs a new form object.
+	 * @param validators Rules to validate this form's fields.
+	 */
 	constructor(validators: IValidatorRule<FieldBase<any, any>[]>[] = [new DefaultFormValidator<FieldBase<any, any>>("Please fix all errors.")]) {
 		super(validators);
 		this.value = ko.observableArray<FieldBase<any, any>>();
@@ -32,8 +32,9 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	}
 
     /**
-     * Adds a new field to this form object.
-     */
+	 * Adds a new Field to this form object.
+	 * @param validators Validation rules to apply on new Field.
+	 */
 	public addField<T>(validators: IValidatorRule<T>[] = []): IField<T> {
 		const self = this;
 
@@ -49,8 +50,9 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	}
 
     /**
-     * Adds a new field array to this form object.
-     */
+	 * Adds a new FieldArray to this form object.
+	 * @param validators Validation rules to apply on new FieldArray.
+	 */
 	public addFieldArray<T>(validators: IValidatorRule<T[]>[] = []): IFieldArray<T> {
 		const self = this;
 		let field = new FieldArray<T>(validators);

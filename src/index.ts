@@ -17,6 +17,9 @@ import {
 import { DefaultFormValidator } from './defaultFormValidator';
 import { FormBase } from './formBase';
 
+/**
+ * valiko
+ */
 export {
 	IValidable,
 	IKoValue,
