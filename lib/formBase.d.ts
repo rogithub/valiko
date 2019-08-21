@@ -9,18 +9,20 @@ export declare abstract class FormBase<TModel> extends FieldBase<FieldBase<any, 
     value: KnockoutObservableArray<FieldBase<any, any>>;
     /**
      * Constructs a new form object.
-     * @param validators List of validation rules.
+     * @param validators Rules to validate this form's fields.
      */
     constructor(validators?: IValidatorRule<FieldBase<any, any>[]>[]);
     abstract load(model: TModel): void;
     abstract retrieve(): TModel;
     private addToHistory;
     /**
-     * Adds a new field to this form object.
+     * Adds a new Field to this form object.
+     * @param validators Validation rules to apply on new Field.
      */
     addField<T>(validators?: IValidatorRule<T>[]): IField<T>;
     /**
-     * Adds a new field array to this form object.
+     * Adds a new FieldArray to this form object.
+     * @param validators Validation rules to apply on new FieldArray.
      */
     addFieldArray<T>(validators?: IValidatorRule<T[]>[]): IFieldArray<T>;
 }

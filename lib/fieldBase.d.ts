@@ -12,7 +12,8 @@ export declare abstract class FieldBase<T, Ko extends KnockoutObservable<T> | Kn
     hasError: KnockoutComputed<boolean>;
     constructor(validators: IValidatorRule<T | T[]>[]);
     /**
-     * Applies existing validators on current value.
+     * Applies existing validator rules to current value.
+     * The first time it is invoked, sets wasValidated to true.
      */
     validate(): Promise<boolean>;
 }
