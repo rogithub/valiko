@@ -96,6 +96,7 @@ externals: {
     <!-- ko foreach: history -->
       <span data-bind="text: JSON.stringify($data)"></span>
     <!-- /ko -->
+    
     <textinput>
       <div class="form-group">
         <label for="txtName">Name</label>
