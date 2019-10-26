@@ -10,28 +10,28 @@ export class DefaultFormValidator<T extends IValidable> extends ValidatorBase<T[
      * Message to display if errors.
      * @param error Error message.
      */
-	constructor(error: string) {
-		super(error);
-	}
+    constructor(error: string) {
+        super(error);
+    }
 
     /**
      * Runs all validation rules in all fields in form.
      * @param value Current value.
      */
-	public async check(value?: T[]): Promise<IValidationResult> {
-		const self = this;
-		let isValid = true;
+    public async check(value?: T[]): Promise<IValidationResult> {
+        const self = this;
+        let isValid = true;
 
-		if (value === null || value === undefined) {
-			return self.toResult(isValid);
-		}
+        if (self.isNullOrUndefined(value)) {
+            return self.toResult(isValid);
+        }
 
-		for (let f of value) {
-			if (await f.validate() === false) {
-				isValid = false;
-			}
-		}
+        for (let f of value) {
+            if (await f.validate() === false) {
+                isValid = false;
+            }
+        }
 
-		return self.toResult(isValid);
-	}
+        return self.toResult(isValid);
+    }
 }

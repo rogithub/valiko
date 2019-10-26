@@ -1,15 +1,7 @@
 /**
- * Represents an object that can be validated.
- * Result will be returned in a promise.
- */
-interface IValidable {
-	validate(): Promise<boolean>;
-}
-
-/**
  * Represents an object with eiter a KnockoutObservable or KnockoutObservableArray generic value.
  */
-interface IKoValue<T, Ko extends KnockoutObservable<T  | undefined> | KnockoutObservableArray<T  | undefined>> {
+interface IKoValue<T, Ko extends KnockoutObservable<T | undefined> | KnockoutObservableArray<T | undefined>> {
     value: Ko;
 }
 
@@ -21,19 +13,19 @@ interface IValidationInfo<T> {
     /**
      * Rules that validate current field value.
      */
-	validators: IValidatorRule<T | T[]>[];
+    validators: IValidatorRule<T | T[]>[];
     /**
      * Error list of current value.
      */
-	errors: KnockoutObservableArray<string>;
+    errors: KnockoutObservableArray<string>;
 	/**
      * True if there are errors on current value.
      */
-	hasError: KnockoutComputed<boolean>;
+    hasError: KnockoutComputed<boolean>;
 	/**
 	 * true if was validated
 	 */
-	wasValidated: KnockoutObservable<boolean>;
+    wasValidated: KnockoutObservable<boolean>;
 }
 
 /**
@@ -43,11 +35,19 @@ interface IValidationResult {
     /**
      * True if current value is valid.
      */
-	isValid: boolean;
+    isValid: boolean;
     /**
      * Error message if value fails current validation.
      */
-	message: string;
+    message: string;
+}
+
+/**
+ * Represents an object that can be validated.
+ * Result will be returned in a promise.
+ */
+interface IValidable {
+    validate(): Promise<boolean>;
 }
 
 /**
@@ -58,7 +58,7 @@ interface IValidatorRule<T> {
 	 * Returns a promise indicating if given value is valid.
 	 * @param value value to validate against this rule.
 	 */
-	check(value?: T): Promise<IValidationResult>;
+    check(value?: T): Promise<IValidationResult>;
 }
 
 /** Base for IField and IFieldArray */
@@ -74,12 +74,12 @@ interface IFieldArray<T> extends IFieldBase<T, KnockoutObservableArray<T>> { }
  * Interfaces for valiko
  */
 export {
-	IValidable,
-	IKoValue,
-	IValidationInfo,
-	IValidationResult,
-	IValidatorRule,
-	IFieldBase,
-	IField,
-	IFieldArray
+    IValidable,
+    IKoValue,
+    IValidationInfo,
+    IValidationResult,
+    IValidatorRule,
+    IFieldBase,
+    IField,
+    IFieldArray
 }
