@@ -1,3 +1,3 @@
 # Documentation 
-  - [Documentation](https://rogithub.github.io/valiko/docs/)
+  - [Documentation](https://rogithub.github.io/valiko/)
 
