@@ -64,14 +64,131 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
-					<h1>Documentation</h1>
+				<p><a href="https://travis-ci.org/rogithub/valiko"><img src="https://travis-ci.org/rogithub/valiko.svg?branch=master" alt="Build Status"></a>
+				<a href="https://coveralls.io/github/rogithub/valiko?branch=master"><img src="https://coveralls.io/repos/github/rogithub/valiko/badge.svg?branch=master" alt="Coverage Status"></a></p>
+				<a href="#valiko" id="valiko" style="color: inherit; text-decoration: none;">
+					<h1>valiko</h1>
+				</a>
+				<p>valiko is a TypeScript plugin that adds validation on top of <a href="http://knockoutjs.com/">knockoutjs</a>.</p>
+				<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
+					<h2>Docs</h2>
 				</a>
 				<ul>
-					<li><a href="https://rogithub.github.io/valiko/">Documentation</a></li>
+					<li><a href="https://rogithub.github.io/valiko/">docs api</a></li>
 					<li><a href="https://github.com/rogithub/valiko">github repo</a></li>
 					<li><a href="https://www.npmjs.com/package/valiko">npm package</a></li>
 				</ul>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
+				<ul>
+					<li>Custom validators</li>
+					<li>Field validation</li>
+					<li>Form validation</li>
+					<li>Keeps history of changes</li>
+				</ul>
+				<a href="#instalation" id="instalation" style="color: inherit; text-decoration: none;">
+					<h2>Instalation:</h2>
+				</a>
+				<ol>
+					<li>Create your web app.</li>
+					<li>Add knockout library to it</li>
+					<li>Add valiko <code>$ npm install valiko --save-dev</code></li>
+					<li>If using webpack and declaring knockout on your html
+					add this to webpack.config.js</li>
+				</ol>
+				<pre><code class="language-javascript">externals: {
+  <span class="hljs-string">'ko'</span>: <span class="hljs-string">'ko'</span>
+}</code></pre>
+				<a href="#field-usage" id="field-usage" style="color: inherit; text-decoration: none;">
+					<h2>Field Usage:</h2>
+				</a>
+				<ol>
+					<li><p>Create a validator by extending ValidatorBase</p>
+						<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { ValidatorBase, IValidationResult } <span class="hljs-keyword">from</span> <span class="hljs-string">'valiko'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringRequired</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ValidatorBase</span>&lt;<span class="hljs-title">string</span>&gt; </span>{
+<span class="hljs-keyword">constructor</span>() {
+ <span class="hljs-keyword">super</span>(<span class="hljs-string">"Required"</span>);
+}
+
+public check(value?: string): <span class="hljs-built_in">Promise</span>&lt;IValidationResult&gt; {
+<span class="hljs-keyword">const</span> self = <span class="hljs-keyword">this</span>;
+<span class="hljs-keyword">if</span> (value === <span class="hljs-literal">null</span> || value === <span class="hljs-literal">undefined</span> || value.length === <span class="hljs-number">0</span>) {
+ <span class="hljs-keyword">return</span> self.toNotValid();
+}
+
+ <span class="hljs-keyword">return</span> self.toValid();
+}
+}</code></pre>
+					</li>
+					<li><p>Create a form by extending <code>FormBase&lt;T&gt;</code></p>
+						<pre><code class="language-javascript">
+<span class="hljs-keyword">import</span> { IField, FormBase } <span class="hljs-keyword">from</span> <span class="hljs-string">'valiko'</span>;
+
+interface Person {
+<span class="hljs-attr">name</span>: string;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Form</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FormBase</span>&lt;<span class="hljs-title">Person</span>&gt; </span>{
+public name: IField&lt;string&gt;;
+
+<span class="hljs-keyword">constructor</span>() {
+ <span class="hljs-keyword">super</span>();
+ <span class="hljs-keyword">this</span>.name = <span class="hljs-keyword">this</span>.addField&lt;string&gt;([<span class="hljs-keyword">new</span> StringRequired()]);
+}
+
+public load(model: Person): <span class="hljs-keyword">void</span> {
+ <span class="hljs-keyword">const</span> self = <span class="hljs-keyword">this</span>;
+ <span class="hljs-keyword">this</span>.name.value(model.name);
+}    
+
+public retrieve(): Person {
+ <span class="hljs-keyword">const</span> self = <span class="hljs-keyword">this</span>;
+ <span class="hljs-keyword">return</span> {
+   <span class="hljs-attr">name</span>: self.name.value()
+ }
+}
+
+public <span class="hljs-keyword">async</span> onSave(): <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-keyword">void</span>&gt; {
+   <span class="hljs-keyword">const</span> self = <span class="hljs-keyword">this</span>;
+   <span class="hljs-keyword">let</span> isValid = <span class="hljs-keyword">await</span> self.validate();
+   <span class="hljs-keyword">if</span> (isValid === <span class="hljs-literal">false</span>) <span class="hljs-keyword">return</span>;
+
+   <span class="hljs-comment">// ... save logic</span>
+}
+}
+</code></pre>
+					</li>
+					<li><p>Bind your Form model</p>
+						<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data-bind</span>=<span class="hljs-string">"submit: $data.onSave.bind($data)"</span> <span class="hljs-attr">novalidate</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- ko foreach: history --&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">data-bind</span>=<span class="hljs-string">"text: JSON.stringify($data)"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- /ko --&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">textinput</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group"</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"txtName"</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">data-bind</span>=<span class="hljs-string">"textInput: name.value, 
+     css: { 'is-invalid': name.hasError(), 'is-valid': !name.hasError() &amp;&amp; name.wasValidated() }"</span>          
+     <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"txtName"</span> <span class="hljs-attr">aria-describedby</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Name"</span>&gt;</span>
+
+   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"invalid-feedback"</span>&gt;</span>
+     <span class="hljs-comment">&lt;!-- ko foreach: name.errors --&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">data-bind</span>=<span class="hljs-string">"text: $data"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+     <span class="hljs-comment">&lt;!-- /ko --&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">textinput</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"float-right"</span>&gt;</span>            
+ <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn btn-outline-success"</span>&gt;</span>Save<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</code></pre>
+					</li>
+				</ol>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
