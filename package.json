@@ -1,5 +1,5 @@
 {
-  "name": "valiko",
+  "name": "@rogithub/valiko",
   "version": "1.0.0",
   "description": "validation utils for knockout",
   "browser": "valiko-min.js",
