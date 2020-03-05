@@ -1,19 +1,19 @@
 /**
  * Represents an object with eiter a KnockoutObservable or KnockoutObservableArray generic value.
  */
-interface KoValue<T, Ko extends KnockoutObservable<T | undefined> | KnockoutObservableArray<T | undefined>> {
-    value: Ko;
+interface KoObservable<T, TT extends KnockoutObservable<T | undefined> | KnockoutObservableArray<T | undefined>> {
+    value: TT;
 }
 
 /**
- * Validation related data for fields.
+ * Validation related data for Obs.
  */
-interface ValidationInfo<T> {
+interface KoErrInfo<T> {
 
     /**
-     * Rules that validate current field value.
+     * Rules that validate current Obs value.
      */
-    validators: ValidatorRule<T | T[]>[];
+    rules: KoRule<T | T[]>[];
     /**
      * Error list of current value.
      */
@@ -31,7 +31,7 @@ interface ValidationInfo<T> {
 /**
  * Result of a validation.
  */
-interface ValidationResult {
+interface KoResult {
     /**
      * True if current value is valid.
      */
@@ -46,40 +46,40 @@ interface ValidationResult {
  * Represents an object that can be validated.
  * Result will be returned in a promise.
  */
-interface Validable {
+interface KoValidable {
     validate(): Promise<boolean>;
 }
 
 /**
- * Validation rule for a field.
+ * Validation rule for a Obs.
  */
-interface ValidatorRule<T> {
+interface KoRule<T> {
 	/**
 	 * Returns a promise indicating if given value is valid.
 	 * @param value value to validate against this rule.
 	 */
-    check(value?: T): Promise<ValidationResult>;
+    check(value?: T): Promise<KoResult>;
 }
 
 /** Base for IField and IFieldArray */
-interface KoFieldBase<T, Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>> extends ValidationInfo<T>, Validable, KoValue<T, Ko> { }
+interface KoObsBase<T, TT extends KnockoutObservable<T> | KnockoutObservableArray<T>> extends KoErrInfo<T>, KoValidable, KoObservable<T, TT> { }
 
-/** Represents a single value field in a form. */
-interface KoField<T> extends KoFieldBase<T, KnockoutObservable<T>> { }
+/** Represents a single value Obs in a form. */
+interface KoObs<T> extends KoObsBase<T, KnockoutObservable<T>> { }
 
-/** Represents a multiple values field in a form. */
-interface KoFieldArray<T> extends KoFieldBase<T, KnockoutObservableArray<T>> { }
+/** Represents a multiple values Obs in a form. */
+interface KoObsArr<T> extends KoObsBase<T, KnockoutObservableArray<T>> { }
 
 /**
  * Interfaces for valiko
  */
 export {
-    Validable,
-    KoValue,
-    ValidationInfo,
-    ValidationResult,
-    ValidatorRule,
-    KoFieldBase,
-    KoField,
-    KoFieldArray
+    KoValidable,
+    KoObservable,
+    KoErrInfo,
+    KoResult,
+    KoRule,
+    KoObsBase,
+    KoObs,
+    KoObsArr
 }

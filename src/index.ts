@@ -1,38 +1,38 @@
 ﻿
-import { FieldBase } from './fieldBase';
-import { Field } from './field';
-import { FieldArray } from './fieldArray';
-import { ValidatorBase } from './validatorBase';
+import { ObsBase } from './obsBase';
+import { Obs } from './obs';
+import { ObsArr } from './obsArr';
+import { RuleBase } from './ruleBase';
 import {
-	Validable,
-	KoValue,
-	ValidationInfo,
-	ValidationResult,
-	ValidatorRule,
-	KoFieldBase,
-	KoField,
-	KoFieldArray
+	KoValidable,
+    KoObservable,
+    KoErrInfo,
+    KoResult,
+    KoRule,
+    KoObsBase,
+    KoObs,
+    KoObsArr
 } from './interfaces';
 
-import { DefaultFormValidator } from './defaultFormValidator';
-import { FormBase } from './formBase';
+import { FrmRule } from './frmRule';
+import { ObsFrm } from './ObsFrm';
 
 /**
  * valiko
  */
 export {
-	Validable,
-	KoValue,
-	ValidationInfo,
-	ValidationResult,
-	ValidatorRule,
-	KoFieldBase,
-	KoField,
-	KoFieldArray,
-	FieldBase,
-	Field,
-	FieldArray,
-	ValidatorBase,
-	DefaultFormValidator,
-	FormBase
+	KoValidable,
+    KoObservable,
+    KoErrInfo,
+    KoResult,
+    KoRule,
+    KoObsBase,
+    KoObs,
+    KoObsArr,
+	ObsBase,
+	Obs,
+	ObsArr,
+	RuleBase,
+	FrmRule,
+	ObsFrm
 }

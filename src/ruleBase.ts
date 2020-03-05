@@ -1,20 +1,20 @@
-﻿import { ValidatorRule, ValidationResult } from './interfaces';
+﻿import { KoRule, KoResult } from './interfaces';
 
 
 /**
  * Base class for validation rules.
  */
-export abstract class ValidatorBase<T> implements ValidatorRule<T> {
+export abstract class RuleBase<T> implements KoRule<T> {
 	public errorMessage: string;
 	constructor(errorMessage: string) {
 		this.errorMessage = errorMessage;
 	}
 
-	public abstract check(value?: T): Promise<ValidationResult>;
+	public abstract check(value?: T): Promise<KoResult>;
 
-	private toPromise = (isValid: boolean): Promise<ValidationResult> => {
+	private toPromise = (isValid: boolean): Promise<KoResult> => {
 		const self = this;
-		let result: ValidationResult = {
+		let result: KoResult = {
 			isValid: isValid,
 			message: isValid ? "" : self.errorMessage
 		};
@@ -26,17 +26,17 @@ export abstract class ValidatorBase<T> implements ValidatorRule<T> {
 		return value === null || value === undefined;
 	}
 	
-	protected toResult = (isValid: boolean): Promise<ValidationResult> => {
+	protected toResult = (isValid: boolean): Promise<KoResult> => {
 		const self = this;
 		return self.toPromise(isValid);
 	}
 
-	protected toNotValid = (): Promise<ValidationResult> => {
+	protected toNotValid = (): Promise<KoResult> => {
 		const self = this;
 		return self.toResult(false);
 	}
 
-	protected toValid = (): Promise<ValidationResult> => {
+	protected toValid = (): Promise<KoResult> => {
 		const self = this;
 		return self.toResult(true);
 	}

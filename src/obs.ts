@@ -1,11 +1,11 @@
 ﻿
-import { ValidatorRule } from './interfaces';
-import { FieldBase } from "./fieldBase";
+import { KoRule } from './interfaces';
+import { ObsBase } from "./obsBase";
 
 /**
  * Represents a single value field in a form.
  */
-export class Field<T> extends FieldBase<T, KnockoutObservable<T>> {
+export class Obs<T> extends ObsBase<T, KnockoutObservable<T>> {
 	public value: KnockoutObservable<T>;
 
 	/**
@@ -16,7 +16,7 @@ export class Field<T> extends FieldBase<T, KnockoutObservable<T>> {
 	constructor(ko: KnockoutStatic, value: KnockoutObservable<T> = ko.observable<T>()) {
 		super(ko);
 		this.value = value;
-		this.validators = new Array<ValidatorRule<T>>();
+		this.rules = new Array<KoRule<T>>();
 
 		const self = this;
 		this.value.subscribe(function (newValue: T): void {
@@ -32,10 +32,10 @@ export class Field<T> extends FieldBase<T, KnockoutObservable<T>> {
 	/**
 	 * Adds validators to this field.
 	 */
-	with = (...validators: ValidatorRule<T>[]) : Field<T> => {
+	with = (...validators: KoRule<T>[]) : Obs<T> => {
 		const self= this;
 		for(let v of validators) {
-			self.validators.push(v);
+			self.rules.push(v);
 		}
 		return self;
 	} 

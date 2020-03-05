@@ -1,6 +1,6 @@
-const { ValidatorBase } = require('../release');
+const { RuleBase } = require('../release');
 
-class NumberArrayRequired extends ValidatorBase {
+class NumberArrayRequired extends RuleBase {
 
 	check(value) {
 		const self = this;

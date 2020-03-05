@@ -1,24 +1,24 @@
 
-const { DefaultFormValidator } = require('../release');
+const { FrmRule } = require('../release');
 
-describe('DefaultFormValidator', () => {
+describe('FrmRule', () => {
     describe('constructor', () => {
         it("constructor() should set property", function (done) {
 
             let error = "error found";
-            let instance = new DefaultFormValidator(error);
+            let instance = new FrmRule(error);
             expect(instance.errorMessage).toBe(error);
             done();
         });
     });
 });
 
-describe('DefaultFormValidator', () => {
+describe('FrmRule', () => {
     describe('check', () => {
         it("check() should be valid for empty param", function (done) {
             let error = "error found";
             let isValid = true;
-            let instance = new DefaultFormValidator(error);
+            let instance = new FrmRule(error);
 
             let promise = instance.check();
             promise.then(result => {
@@ -30,12 +30,12 @@ describe('DefaultFormValidator', () => {
     });
 });
 
-describe('DefaultFormValidator', () => {
+describe('FrmRule', () => {
     describe('check', () => {
-        it("check() should be valid with validator", function (done) {
+        it("check() should be valid with rule", function (done) {
             let error = "error found";
             let isValid = true;
-            let instance = new DefaultFormValidator(error);
+            let instance = new FrmRule(error);
             let validableObj = {
                 validate: () => {
                     return Promise.resolve(true);
@@ -52,12 +52,12 @@ describe('DefaultFormValidator', () => {
     });
 });
 
-describe('DefaultFormValidator', () => {
+describe('FrmRule', () => {
     describe('check', () => {
-        it('check() should be valid with validator', (done) => {
+        it('check() should be valid with rule', (done) => {
             let error = "error found";
             let isValid = false;
-            let instance = new DefaultFormValidator(error);
+            let instance = new FrmRule(error);
             let validObj = {
                 validate: () => {
                     return Promise.resolve(true);

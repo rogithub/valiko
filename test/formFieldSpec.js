@@ -1,46 +1,30 @@
-const { FormBase } = require('../release');
+const { ObsFrm } = require('../release');
 const ko = require('./koMock');
 let StringRequired = require('./stringRequired');
-
-
-class Form extends FormBase {
-
-	constructor(ko) {
-		super(ko);
-		this.name = this.add().with(new StringRequired());
-	}
-
-	load(model) {
-		const self = this;
-		this.name.value(model.name);
-	}
-
-	retrieve() {
-		const self = this;
-		return {
-			name: self.name.value()
-		}
-	}
-}
+const Form = require('./form');
 
 describe('Form', () => {
 	describe('addField', () => {
 		it('field not valid', (done) => {
-			let form = new Form(ko);
+			let frm = new Form(ko);
 
-			expect(form.hasError()).toBeFalse();
-			form.validate().then(valid => expect(valid).toBeFalse()).then(done);
+			expect(frm.hasError()).toBeFalse();
+			frm.validate().then(valid => expect(valid).toBeFalse()).then(done);
 		});
 	});
 });
 
 describe('Form', () => {
 	describe('addField', () => {
-		it('field valid', (done) => {
-			let form = new Form(ko);
-			expect(form.hasError()).toBeFalse();
-			form.name.value("jhon");
-			form.validate().then(valid => expect(valid).toBeTrue()).then(done);
+		it('field valid', (done) => {			
+			let frm = new Form(ko);
+			
+			expect(frm.hasError()).toBeFalse();
+			frm.load({
+				numbers: [1],
+				name: "Jhon"
+			});
+			frm.validate().then(valid => expect(valid).toBeTrue()).then(done);
 		});
 	});
 });

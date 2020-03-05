@@ -1,12 +1,12 @@
-const { FieldArray } = require('../release');
+const { ObsArr } = require('../release');
 let NumberArrayRequired = require('./numberArrayRequired');
 
 const ko = require('./koMock');
 
-describe('FieldArray', () => {
+describe('ObsArr', () => {
 	describe('constructor', () => {
 		it('initialized() should be false for new obj', (done) => {
-			var fld = new FieldArray(ko);
+			var fld = new ObsArr(ko);
 			expect(fld.hasError()).toBe(false);
 			fld.value([1]);
 			expect(fld.hasError()).toBe(false);
@@ -16,22 +16,22 @@ describe('FieldArray', () => {
 	});
 });
 
-describe('FieldArray', () => {
+describe('ObsArr', () => {
 	describe('validation', () => {
 		it('should not be valid', (done) => {
-			var fld = new FieldArray(ko);
-			fld.validators.push(new NumberArrayRequired());
+			var fld = new ObsArr(ko);
+			fld.rules.push(new NumberArrayRequired());
 			fld.value([]);
 			fld.validate().then(valid => expect(valid).toBeFalse()).then(done);
 		});
 	});
 });
 
-describe('FieldArray', () => {
+describe('ObsArr', () => {
 	describe('validation', () => {
 		it('should be valid', (done) => {
-			var fld = new FieldArray(ko);
-			fld.validators.push(new NumberArrayRequired());
+			var fld = new ObsArr(ko);
+			fld.rules.push(new NumberArrayRequired());
 			fld.value([1]);
 			fld.validate().then(valid => expect(valid).toBeTrue()).then(done);
 		});

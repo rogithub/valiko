@@ -1,12 +1,12 @@
 ﻿
-import { ValidatorRule, KoFieldBase } from './interfaces'
+import { KoRule, KoObsBase } from './interfaces'
 
 /**
- * Base class for fields.
+ * Base class for Obs.
  */
-export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>> implements KoFieldBase<T, Ko> {
-	public validators: ValidatorRule<T | T[]>[];
-	public abstract value: Ko;
+export abstract class ObsBase<T, TT extends KnockoutObservable<T> | KnockoutObservableArray<T>> implements KoObsBase<T, TT> {
+	public rules: KoRule<T | T[]>[];
+	public abstract value: TT;
 	public errors: KnockoutObservableArray<string>;
 	protected initialized: KnockoutObservable<boolean>;
 	public wasValidated: KnockoutObservable<boolean>;
@@ -36,7 +36,7 @@ export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutOb
 			self.wasValidated(true);
 		}
 		
-		for (let validator of self.validators) {
+		for (let validator of self.rules) {
 			let result = await validator.check(self.value());
 
 			if (result.isValid === false) {
