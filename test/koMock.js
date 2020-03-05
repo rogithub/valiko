@@ -50,20 +50,11 @@ class PureComputed {
 
     constructor(cb) {
         this.cb = cb;
-        this.subscribers = [];
-        this.subscribe = (fn) => this.subscribers.push(fn);
     }
 
     set() {
         const self = this;
-
-        if (arguments.length === 0) {
-            return self.cb();
-        }
-        self["cb"] = arguments[0];
-        for (let fn of self.subscribers) {
-            fn(arguments[0]);
-        }
+        return self.cb();
     }
 }
 

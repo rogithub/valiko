@@ -103,6 +103,30 @@ describe('ko', () => {
             done();
         });
     });
+
+    describe('utils', () => {
+
+        it('shold array map', (done) => {
+
+            let arr = ko.utils.arrayMap([1], (n) => n + n);
+            expect(arr[0]).toBe(2);
+            expect(arr.length).toBe(1);
+
+            done();
+        });
+    });
+
+    describe('utils', () => {
+
+        it('shold array filter', (done) => {
+
+            let arr = ko.utils.arrayFilter([1, 2, 3, 4], (n) => n % 2 === 0);
+            expect(arr[0]).toBe(2);
+            expect(arr[1]).toBe(4);
+            expect(arr.length).toBe(2);
+            done();
+        });
+    });
 });
 
 
