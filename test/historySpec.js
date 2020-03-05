@@ -18,16 +18,16 @@ describe('History', () => {
             });
             
 
-            expect(frm.history().length).toBe(1);
+            expect(frm.history().length).toBe(2);
             expect(frm.history()[0].numbers[0]).toBe(1);
-            expect(frm.history()[0].name).toBe("Jhon");
+            expect(frm.history()[1].name).toBe("Jhon");
 
             frm.name.value("Jeff");
-            expect(frm.history().length).toBe(2);
+            expect(frm.history().length).toBe(3);
 
             frm.numbers.value.push(1);
 
-            expect(frm.history().length).toBe(3);
+            expect(frm.history().length).toBe(4);
 
             done();			
 		});

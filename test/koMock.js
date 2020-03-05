@@ -1,15 +1,25 @@
 class ObservableArray {
 
     constructor(value) {
-        this.value = value;
-        if (this.value === undefined) {
-            this.value = [];
-        }
+        const self = this;
+        this.value = value;        
         this.subscribers = [];
-        this.subscribe = (fn, obsArr, strType) => this.subscribers.push(fn);
-        this.removeAll = () => this.value = [];
+        this.subscribe = (fn) => self.subscribers.push(fn);
+        this.removeAll = () => {
+            this.value = [];
+            for (let fn of self.subscribers) {
+                fn(this.value);
+            }
+        };
         this.push = (it) => {
-            this.value.push(it);
+            this.value.push(it);  
+            for (let fn of self.subscribers) {
+                fn(this.value);
+            }          
+        }
+
+        if (this.value === undefined) {
+            self.removeAll();
         }
     }
 
@@ -18,7 +28,7 @@ class ObservableArray {
         if (arguments.length === 0) {
             return self.value;
         }
-        self["value"] = arguments[0];
+        self.value = arguments[0];
         for (let fn of self.subscribers) {
             fn(arguments[0]);
         }
