@@ -1,11 +1,11 @@
 ﻿
-import { IValidatorRule, IFieldBase } from './interfaces'
+import { ValidatorRule, KoFieldBase } from './interfaces'
 
 /**
  * Base class for fields.
  */
-export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>> implements IFieldBase<T, Ko> {
-	public validators: IValidatorRule<T | T[]>[];
+export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>> implements KoFieldBase<T, Ko> {
+	public validators: ValidatorRule<T | T[]>[];
 	public abstract value: Ko;
 	public errors: KnockoutObservableArray<string>;
 	protected initialized: KnockoutObservable<boolean>;
@@ -13,7 +13,7 @@ export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutOb
 	public hasError: KnockoutComputed<boolean>;
 	public ko: KnockoutStatic;
 
-	constructor(ko: KnockoutStatic, validators: IValidatorRule<T | T[]>[]) {
+	constructor(ko: KnockoutStatic, validators: ValidatorRule<T | T[]>[]) {
 		this.ko = ko;
 		this.validators = validators;
 

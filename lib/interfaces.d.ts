@@ -2,17 +2,17 @@
 /**
  * Represents an object with eiter a KnockoutObservable or KnockoutObservableArray generic value.
  */
-interface IKoValue<T, Ko extends KnockoutObservable<T | undefined> | KnockoutObservableArray<T | undefined>> {
+interface KoValue<T, Ko extends KnockoutObservable<T | undefined> | KnockoutObservableArray<T | undefined>> {
     value: Ko;
 }
 /**
  * Validation related data for fields.
  */
-interface IValidationInfo<T> {
+interface ValidationInfo<T> {
     /**
      * Rules that validate current field value.
      */
-    validators: IValidatorRule<T | T[]>[];
+    validators: ValidatorRule<T | T[]>[];
     /**
      * Error list of current value.
      */
@@ -29,7 +29,7 @@ interface IValidationInfo<T> {
 /**
  * Result of a validation.
  */
-interface IValidationResult {
+interface ValidationResult {
     /**
      * True if current value is valid.
      */
@@ -43,37 +43,37 @@ interface IValidationResult {
  * Represents an object that can be validated.
  * Result will be returned in a promise.
  */
-interface IValidable {
+interface Validable {
     validate(): Promise<boolean>;
 }
 /**
  * Validation rule for a field.
  */
-interface IValidatorRule<T> {
+interface ValidatorRule<T> {
     /**
      * Returns a promise indicating if given value is valid.
      * @param value value to validate against this rule.
      */
-    check(value?: T): Promise<IValidationResult>;
+    check(value?: T): Promise<ValidationResult>;
 }
 /** Base for IField and IFieldArray */
-interface IFieldBase<T, Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>> extends IValidationInfo<T>, IValidable, IKoValue<T, Ko> {
+interface KoFieldBase<T, Ko extends KnockoutObservable<T> | KnockoutObservableArray<T>> extends ValidationInfo<T>, Validable, KoValue<T, Ko> {
 }
 /** Represents a single value field in a form. */
-interface IField<T> extends IFieldBase<T, KnockoutObservable<T>> {
+interface KoField<T> extends KoFieldBase<T, KnockoutObservable<T>> {
 }
 /** Represents a multiple values field in a form. */
-interface IFieldArray<T> extends IFieldBase<T, KnockoutObservableArray<T>> {
+interface KoFieldArray<T> extends KoFieldBase<T, KnockoutObservableArray<T>> {
 }
-interface IFieldConfig<T> {
+interface FieldConfig<T> {
     observable?: KnockoutObservable<T>;
-    validators?: IValidatorRule<T>[];
+    validators?: ValidatorRule<T>[];
 }
-interface IFieldArrayConfig<T> {
+interface FieldArrayConfig<T> {
     observable?: KnockoutObservableArray<T>;
-    validators?: IValidatorRule<T[]>[];
+    validators?: ValidatorRule<T[]>[];
 }
 /**
  * Interfaces for valiko
  */
-export { IValidable, IKoValue, IValidationInfo, IValidationResult, IValidatorRule, IFieldBase, IField, IFieldArray, IFieldConfig, IFieldArrayConfig };
+export { Validable, KoValue, ValidationInfo, ValidationResult, ValidatorRule, KoFieldBase, KoField, KoFieldArray, FieldConfig, FieldArrayConfig };

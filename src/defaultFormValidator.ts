@@ -1,10 +1,10 @@
-﻿import { IValidationResult, IValidable } from './interfaces';
+﻿import { ValidationResult, Validable } from './interfaces';
 import { ValidatorBase } from './validatorBase';
 
 /**
  * Validates all fields in the form.
  */
-export class DefaultFormValidator<T extends IValidable> extends ValidatorBase<T[]> {
+export class DefaultFormValidator<T extends Validable> extends ValidatorBase<T[]> {
 
     /**
      * Message to display if errors.
@@ -18,7 +18,7 @@ export class DefaultFormValidator<T extends IValidable> extends ValidatorBase<T[
      * Runs all validation rules in all fields in form.
      * @param value Current value.
      */
-    public async check(value?: T[]): Promise<IValidationResult> {
+    public async check(value?: T[]): Promise<ValidationResult> {
         const self = this;
         let isValid = true;
 

@@ -1,20 +1,20 @@
-﻿import { IValidatorRule, IValidationResult } from './interfaces';
+﻿import { ValidatorRule, ValidationResult } from './interfaces';
 
 
 /**
  * Base class for validation rules.
  */
-export abstract class ValidatorBase<T> implements IValidatorRule<T> {
+export abstract class ValidatorBase<T> implements ValidatorRule<T> {
 	public errorMessage: string;
 	constructor(errorMessage: string) {
 		this.errorMessage = errorMessage;
 	}
 
-	public abstract check(value?: T): Promise<IValidationResult>;
+	public abstract check(value?: T): Promise<ValidationResult>;
 
-	private toPromise(isValid: boolean): Promise<IValidationResult> {
+	private toPromise(isValid: boolean): Promise<ValidationResult> {
 		const self = this;
-		let result: IValidationResult = {
+		let result: ValidationResult = {
 			isValid: isValid,
 			message: isValid ? "" : self.errorMessage
 		};
@@ -26,17 +26,17 @@ export abstract class ValidatorBase<T> implements IValidatorRule<T> {
 		return value === null || value === undefined;
 	}
 	
-	protected toResult(isValid: boolean): Promise<IValidationResult> {
+	protected toResult(isValid: boolean): Promise<ValidationResult> {
 		const self = this;
 		return self.toPromise(isValid);
 	}
 
-	protected toNotValid(): Promise<IValidationResult> {
+	protected toNotValid(): Promise<ValidationResult> {
 		const self = this;
 		return self.toResult(false);
 	}
 
-	protected toValid(): Promise<IValidationResult> {
+	protected toValid(): Promise<ValidationResult> {
 		const self = this;
 		return self.toResult(true);
 	}

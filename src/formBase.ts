@@ -1,4 +1,4 @@
-﻿import { IValidatorRule, IField, IFieldArray, IFieldArrayConfig, IFieldConfig } from './interfaces';
+﻿import { ValidatorRule, KoField, KoFieldArray, FieldArrayConfig, FieldConfig } from './interfaces';
 import { DefaultFormValidator } from "./defaultFormValidator";
 import { Field } from "./field";
 import { FieldBase } from "./fieldBase";
@@ -17,7 +17,7 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	 * @param ko KnockoutStatic.
 	 * @param validators Rules to validate this form's fields.
 	 */
-	constructor(ko: KnockoutStatic, validators: IValidatorRule<FieldBase<any, any>[]>[] = [new DefaultFormValidator<FieldBase<any, any>>("Please fix all errors.")]) {
+	constructor(ko: KnockoutStatic, validators: ValidatorRule<FieldBase<any, any>[]>[] = [new DefaultFormValidator<FieldBase<any, any>>("Please fix all errors.")]) {
 		super(ko, validators);
 		this.value = ko.observableArray<FieldBase<any, any>>();
 		this.history = ko.observableArray<TModel>([]);
@@ -36,7 +36,7 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	 * @param config Initial value
 	 * @param validators Validation rules to apply on new Field.
 	 */
-	public addField<T>(config: IFieldConfig<T>): IField<T> {
+	public addField<T>(config: FieldConfig<T>): KoField<T> {
 		const self = this;
 
 		let validators = config.validators === undefined ? [] : config.validators;
@@ -58,7 +58,7 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	 * @param config Initial value.
 	 * @param validators Validation rules to apply on new FieldArray.
 	 */
-	public addFieldArray<T>(config: IFieldArrayConfig<T>): IFieldArray<T> {
+	public addFieldArray<T>(config: FieldArrayConfig<T>): KoFieldArray<T> {
 		const self = this;
 
 		let validators = config.validators === undefined ? [] : config.validators;

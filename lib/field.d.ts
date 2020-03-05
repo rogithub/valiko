@@ -1,5 +1,5 @@
 /// <reference types="knockout" />
-import { IValidatorRule } from './interfaces';
+import { ValidatorRule } from './interfaces';
 import { FieldBase } from "./fieldBase";
 /**
  * Represents a single value field in a form.
@@ -12,5 +12,5 @@ export declare class Field<T> extends FieldBase<T, KnockoutObservable<T>> {
      * @param validators Rules to validate this field's value.
      * @param value Initial value.
      */
-    constructor(ko: KnockoutStatic, validators: IValidatorRule<T>[], value: KnockoutObservable<T>);
+    constructor(ko: KnockoutStatic, validators: ValidatorRule<T>[], value: KnockoutObservable<T>);
 }

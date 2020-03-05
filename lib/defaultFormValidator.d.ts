@@ -1,9 +1,9 @@
-import { IValidationResult, IValidable } from './interfaces';
+import { ValidationResult, Validable } from './interfaces';
 import { ValidatorBase } from './validatorBase';
 /**
  * Validates all fields in the form.
  */
-export declare class DefaultFormValidator<T extends IValidable> extends ValidatorBase<T[]> {
+export declare class DefaultFormValidator<T extends Validable> extends ValidatorBase<T[]> {
     /**
      * Message to display if errors.
      * @param error Error message.
@@ -13,5 +13,5 @@ export declare class DefaultFormValidator<T extends IValidable> extends Validato
      * Runs all validation rules in all fields in form.
      * @param value Current value.
      */
-    check(value?: T[]): Promise<IValidationResult>;
+    check(value?: T[]): Promise<ValidationResult>;
 }
