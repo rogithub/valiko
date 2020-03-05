@@ -58,9 +58,9 @@ externals: {
   export class Form extends FormBase<Person> {
     public name: IField<string>;
 
-    constructor() {
-      super();
-      this.name = this.addField<string>([new StringRequired()]);
+    constructor(ko: KnockoutStatic) {
+      super(ko);
+      this.name = this.add<string>().with(new StringRequired());
     }
 
     public load(model: Person): void {
