@@ -31,8 +31,11 @@ export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutOb
 		self.errors.removeAll();
 
 		let isValid = true;
-		self.wasValidated(true);
-
+		
+		if (self.wasValidated() === false){
+			self.wasValidated(true);
+		}
+		
 		for (let validator of self.validators) {
 			let result = await validator.check(self.value());
 
