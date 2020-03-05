@@ -7,7 +7,7 @@
   "types": "release/index",
   "scripts": {
     "build": "rm -rf ./release/ && tsc --declaration",
-    "test": "nyc jasmine --config=jasmine.json"
+    "test": "npm run build && nyc jasmine --config=jasmine.json"
   },
   "repository": {
     "type": "git",
