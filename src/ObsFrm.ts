@@ -7,10 +7,8 @@ import { ObsArr } from "./obsArr";
 /**
  * Represents a form with a collection of Observables.
  */
-export abstract class ObsFrm<TModel> extends ObsBase<ObsBase<any, any>, KnockoutObservableArray<ObsBase<any, any>>> {
-	public history: KnockoutObservableArray<TModel>;
+export abstract class ObsFrm extends ObsBase<ObsBase<any, any>, KnockoutObservableArray<ObsBase<any, any>>> {
 	public value: KnockoutObservableArray<ObsBase<any, any>>;
-
 
 	/**
 	 * Base class for Forms.
@@ -21,15 +19,6 @@ export abstract class ObsFrm<TModel> extends ObsBase<ObsBase<any, any>, Knockout
 		super(ko);
 		this.rules = [new FrmRule<ObsBase<any, any>>("Please fix all errors.")];
 		this.value = ko.observableArray<ObsBase<any, any>>();
-		this.history = ko.observableArray<TModel>([]);
-	}
-
-	public abstract load(model: TModel): void;
-	public abstract retrieve(): TModel;
-
-	private addToHistory = (): void => {
-		const self = this;
-		this.history.push(self.retrieve());
 	}
 
 	/**
@@ -39,13 +28,7 @@ export abstract class ObsFrm<TModel> extends ObsBase<ObsBase<any, any>, Knockout
 	public add = <T>(val?: KnockoutObservable<T>): KoObs<T> => {
 		const self = this;
 		let obs = new Obs<T>(self.ko, val);
-
 		self.value.push(obs);
-
-		obs.value.subscribe(function (newValue: T): void {
-			self.addToHistory();
-		});
-
 		return obs;
 	}
 
@@ -55,14 +38,8 @@ export abstract class ObsFrm<TModel> extends ObsBase<ObsBase<any, any>, Knockout
 	 */
 	public addArr = <T>(val?: KnockoutObservableArray<T>): KoObsArr<T> => {
 		const self = this;
-
-		let obsArr = new ObsArr<T>(self.ko, val);
+		let obsArr = new ObsArr<T>(self.ko, val);		
 		self.value.push(obsArr);
-
-		obsArr.value.subscribe(function (changes: KnockoutArrayChange<T>): void {
-			self.addToHistory();
-		}, self, "arrayChange");
-
 		return obsArr;
 	}
 }
