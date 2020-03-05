@@ -8,8 +8,9 @@ import { FieldBase } from "./fieldBase";
 export class FieldArray<T> extends FieldBase<T, KnockoutObservableArray<T>>  {
 	public value: KnockoutObservableArray<T>;
 
-    /**
-	 * Constructs a field with multiple values.
+	/**
+	 * Constructs a field array.
+	 * @param ko KnockoutStatic.
 	 * @param validators Rules to validate this field's value.
 	 */
 	constructor(ko: KnockoutStatic, validators: IValidatorRule<T[]>[]) {

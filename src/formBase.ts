@@ -13,8 +13,9 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	public value: KnockoutObservableArray<FieldBase<any, any>>;
 
 
-    /**
-	 * Constructs a new form object.
+	/**
+	 * Base class for Forms.
+	 * @param ko KnockoutStatic.
 	 * @param validators Rules to validate this form's fields.
 	 */
 	constructor(ko: KnockoutStatic, validators: IValidatorRule<FieldBase<any, any>[]>[] = [new DefaultFormValidator<FieldBase<any, any>>("Please fix all errors.")]) {

@@ -8,8 +8,9 @@ import { FieldBase } from "./fieldBase";
 export class Field<T> extends FieldBase<T, KnockoutObservable<T>> {
 	public value: KnockoutObservable<T>;
 
-    /**
+	/**
 	 * Constructs a field with a single value.
+	 * @param ko KnockoutStatic.
 	 * @param validators Rules to validate this field's value.
 	 */
 	constructor(ko: KnockoutStatic, validators: IValidatorRule<T>[]) {
