@@ -27,14 +27,14 @@ externals: {
   1. Create a validator by extending ValidatorBase
 
   ```javascript
-  import { ValidatorBase, IValidationResult } from 'valiko';
+  import { ValidatorBase, ValidationResult } from 'valiko';
 
   export class StringRequired extends ValidatorBase<string> {
     constructor() {
       super("Required");
     }
 
-  public check(value?: string): Promise<IValidationResult> {
+  public check(value?: string): Promise<ValidationResult> {
     const self = this;
     if (value === null || value === undefined || value.length === 0) {
       return self.toNotValid();
@@ -49,14 +49,14 @@ externals: {
 
   ```javascript
 
-  import { IField, FormBase } from 'valiko';
+  import { KoField, FormBase } from 'valiko';
 
   interface Person {
     name: string;
   }
 
   export class Form extends FormBase<Person> {
-    public name: IField<string>;
+    public name: KoField<string>;
 
     constructor(ko: KnockoutStatic) {
       super(ko);
