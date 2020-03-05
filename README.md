@@ -7,7 +7,6 @@ valiko is a TypeScript plugin that adds validation on top of [knockoutjs](http:/
   - Custom validators
   - Field validation
   - Form validation
-  - Keeps history of changes
 
 ## Instalation:
   1. Create your web app.
@@ -89,11 +88,7 @@ externals: {
   3. Bind your Form model
 
   ```html
-  <form data-bind="submit: $data.onSave.bind($data)" novalidate>
-    <!-- ko foreach: history -->
-      <span data-bind="text: JSON.stringify($data)"></span>
-    <!-- /ko -->
-    
+  <form data-bind="submit: $data.onSave.bind($data)" novalidate>    
     <textinput>
       <div class="form-group">
         <label for="txtName">Name</label>
