@@ -1,0 +1,7 @@
+src/
+test/
+jasmine.json
+.npmignore
+.gitignore
+.nycrc.json
+tsconfig.json
