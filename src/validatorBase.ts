@@ -12,7 +12,7 @@ export abstract class ValidatorBase<T> implements ValidatorRule<T> {
 
 	public abstract check(value?: T): Promise<ValidationResult>;
 
-	private toPromise(isValid: boolean): Promise<ValidationResult> {
+	private toPromise = (isValid: boolean): Promise<ValidationResult> => {
 		const self = this;
 		let result: ValidationResult = {
 			isValid: isValid,
@@ -22,21 +22,21 @@ export abstract class ValidatorBase<T> implements ValidatorRule<T> {
 		return Promise.resolve(result);
 	}
 
-	protected isNullOrUndefined(value?: T): boolean {
+	protected isNullOrUndefined = (value?: T): boolean => {
 		return value === null || value === undefined;
 	}
 	
-	protected toResult(isValid: boolean): Promise<ValidationResult> {
+	protected toResult = (isValid: boolean): Promise<ValidationResult> => {
 		const self = this;
 		return self.toPromise(isValid);
 	}
 
-	protected toNotValid(): Promise<ValidationResult> {
+	protected toNotValid = (): Promise<ValidationResult> => {
 		const self = this;
 		return self.toResult(false);
 	}
 
-	protected toValid(): Promise<ValidationResult> {
+	protected toValid = (): Promise<ValidationResult> => {
 		const self = this;
 		return self.toResult(true);
 	}

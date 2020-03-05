@@ -18,7 +18,7 @@ export class DefaultFormValidator<T extends Validable> extends ValidatorBase<T[]
      * Runs all validation rules in all fields in form.
      * @param value Current value.
      */
-    public async check(value?: T[]): Promise<ValidationResult> {
+    public check = async(value?: T[]): Promise<ValidationResult> => {
         const self = this;
         let isValid = true;
 

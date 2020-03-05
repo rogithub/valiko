@@ -27,7 +27,7 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	public abstract load(model: TModel): void;
 	public abstract retrieve(): TModel;
 
-	private addToHistory(): void {
+	private addToHistory = (): void => {
 		const self = this;
 		this.history.push(self.retrieve());
 	}
@@ -36,7 +36,7 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	 * Adds a new Field to this form object.
 	 * @param val Initial value.
 	 */
-	public add<T>(val: KnockoutObservable<T> | undefined): KoField<T> {
+	public add = <T>(val: KnockoutObservable<T> | undefined): KoField<T> => {
 		const self = this;
 
 		let value = val === undefined ? self.ko.observable<T>() : val;
@@ -56,7 +56,7 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	 * Adds a new FieldArray to this form object.
 	 * @param val Initial value.
 	 */
-	public addArray<T>(val: KnockoutObservableArray<T> | undefined): KoFieldArray<T> {
+	public addArray = <T>(val: KnockoutObservableArray<T> | undefined): KoFieldArray<T> => {
 		const self = this;
 
 		let value = val === undefined ? self.ko.observableArray<T>() : val;

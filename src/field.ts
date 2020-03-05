@@ -30,6 +30,9 @@ export class Field<T> extends FieldBase<T, KnockoutObservable<T>> {
 		});
 	}
 
+	/**
+	 * Adds validators to this field.
+	 */
 	with = (...validators: ValidatorRule<T>[]) : Field<T> => {
 		const self= this;
 		for(let v of validators) {

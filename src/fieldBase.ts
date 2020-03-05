@@ -26,7 +26,7 @@ export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutOb
 	 * Applies existing validator rules to current value.
 	 * The first time it is invoked, sets wasValidated to true.
 	 */
-	public async validate(): Promise<boolean> {
+	public validate = async(): Promise<boolean> => {
 		const self = this;
 		self.errors.removeAll();
 
