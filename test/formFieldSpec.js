@@ -1,4 +1,4 @@
-const { FormBase } = require('../lib');
+const { FormBase } = require('../release');
 const ko = require('./koMock');
 let StringRequired = require('./stringRequired');
 

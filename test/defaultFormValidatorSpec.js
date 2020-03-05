@@ -1,5 +1,5 @@
 
-const { DefaultFormValidator } = require('../lib');
+const { DefaultFormValidator } = require('../release');
 
 describe('DefaultFormValidator', () => {
     describe('constructor', () => {

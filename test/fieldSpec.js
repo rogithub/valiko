@@ -1,5 +1,5 @@
 
-const { Field } = require('../lib');
+const { Field } = require('../release');
 let StringRequired = require('./stringRequired');
 const ko = require('./koMock');
 

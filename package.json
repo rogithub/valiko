@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "validation utils for knockout",
   "browser": "valiko-min.js",
-  "main": "lib/index",
-  "types": "lib/index",
+  "main": "release/index",
+  "types": "release/index",
   "scripts": {
-    "build": "rm -rf ./lib/ && tsc --declaration",
+    "build": "rm -rf ./release/ && tsc --declaration",
     "test": "nyc jasmine --config=jasmine.json"
   },
   "repository": {

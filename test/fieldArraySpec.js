@@ -1,4 +1,4 @@
-const { FieldArray } = require('../lib');
+const { FieldArray } = require('../release');
 let NumberArrayRequired = require('./numberArrayRequired');
 
 const ko = require('./koMock');

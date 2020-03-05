@@ -1,5 +1,5 @@
 
-const { FormBase } = require('../lib');
+const { FormBase } = require('../release');
 let NumberArrayRequired = require('./numberArrayRequired');
 const ko = require('./koMock');
 

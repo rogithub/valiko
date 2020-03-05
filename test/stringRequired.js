@@ -1,4 +1,4 @@
-const { ValidatorBase } = require('../lib');
+const { ValidatorBase } = require('../release');
 
 class NumberArrayRequired extends ValidatorBase {
 

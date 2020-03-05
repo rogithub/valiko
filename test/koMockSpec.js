@@ -1,5 +1,3 @@
-
-
 const ko = require('./koMock');
 
 describe('ko', () => {
