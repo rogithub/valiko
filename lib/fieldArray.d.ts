@@ -10,5 +10,5 @@ export declare class FieldArray<T> extends FieldBase<T, KnockoutObservableArray<
      * Constructs a field with multiple values.
      * @param validators Rules to validate this field's value.
      */
-    constructor(validators: IValidatorRule<T[]>[]);
+    constructor(ko: KnockoutStatic, validators: IValidatorRule<T[]>[]);
 }

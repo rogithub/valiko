@@ -11,7 +11,7 @@ export declare abstract class FormBase<TModel> extends FieldBase<FieldBase<any, 
      * Constructs a new form object.
      * @param validators Rules to validate this form's fields.
      */
-    constructor(validators?: IValidatorRule<FieldBase<any, any>[]>[]);
+    constructor(ko: KnockoutStatic, validators?: IValidatorRule<FieldBase<any, any>[]>[]);
     abstract load(model: TModel): void;
     abstract retrieve(): TModel;
     private addToHistory;

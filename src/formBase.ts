@@ -17,8 +17,8 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	 * Constructs a new form object.
 	 * @param validators Rules to validate this form's fields.
 	 */
-	constructor(validators: IValidatorRule<FieldBase<any, any>[]>[] = [new DefaultFormValidator<FieldBase<any, any>>("Please fix all errors.")]) {
-		super(validators);
+	constructor(ko: KnockoutStatic, validators: IValidatorRule<FieldBase<any, any>[]>[] = [new DefaultFormValidator<FieldBase<any, any>>("Please fix all errors.")]) {
+		super(ko, validators);
 		this.value = ko.observableArray<FieldBase<any, any>>();
 		this.history = ko.observableArray<TModel>([]);
 	}
@@ -38,7 +38,7 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	public addField<T>(validators: IValidatorRule<T>[] = []): IField<T> {
 		const self = this;
 
-		let field = new Field<T>(validators);
+		let field = new Field<T>(self.ko, validators);
 
 		self.value.push(field);
 
@@ -55,7 +55,7 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	 */
 	public addFieldArray<T>(validators: IValidatorRule<T[]>[] = []): IFieldArray<T> {
 		const self = this;
-		let field = new FieldArray<T>(validators);
+		let field = new FieldArray<T>(self.ko, validators);
 		self.value.push(field);
 
 		self.value.subscribe(function (changes: KnockoutArrayChange<T>): void {

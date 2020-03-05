@@ -11,15 +11,17 @@ export abstract class FieldBase<T, Ko extends KnockoutObservable<T> | KnockoutOb
 	protected initialized: KnockoutObservable<boolean>;
 	public wasValidated: KnockoutObservable<boolean>;
 	public hasError: KnockoutComputed<boolean>;
+	public ko: KnockoutStatic;
 
-	constructor(validators: IValidatorRule<T | T[]>[]) {
+	constructor(ko: KnockoutStatic, validators: IValidatorRule<T | T[]>[]) {
+		this.ko = ko;
 		this.validators = validators;
 
 		this.errors = ko.observableArray<string>([]);
 		this.initialized = ko.observable<boolean>(false);
 		this.wasValidated = ko.observable<boolean>(false);
-		
-		this.hasError = ko.pureComputed<boolean>(() => this.errors().length > 0, this) as unknown as KnockoutComputed<boolean>;
+
+		this.hasError = ko.pureComputed<boolean>(() => this.errors().length > 0, this);
 	}
 
     /**

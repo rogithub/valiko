@@ -1,12 +1,5 @@
 /// <reference types="knockout" />
 /**
- * Represents an object that can be validated.
- * Result will be returned in a promise.
- */
-interface IValidable {
-    validate(): Promise<boolean>;
-}
-/**
  * Represents an object with eiter a KnockoutObservable or KnockoutObservableArray generic value.
  */
 interface IKoValue<T, Ko extends KnockoutObservable<T | undefined> | KnockoutObservableArray<T | undefined>> {
@@ -45,6 +38,13 @@ interface IValidationResult {
      * Error message if value fails current validation.
      */
     message: string;
+}
+/**
+ * Represents an object that can be validated.
+ * Result will be returned in a promise.
+ */
+interface IValidable {
+    validate(): Promise<boolean>;
 }
 /**
  * Validation rule for a field.
