@@ -11,10 +11,9 @@ export class Field<T> extends FieldBase<T, KnockoutObservable<T>> {
 	/**
 	 * Constructs a field with a single value.
 	 * @param ko KnockoutStatic.
-	 * @param validators Rules to validate this field's value. 
 	 * @param value Initial value.
 	 */
-	constructor(ko: KnockoutStatic, value: KnockoutObservable<T>) {
+	constructor(ko: KnockoutStatic, value: KnockoutObservable<T> = ko.observable<T>()) {
 		super(ko);
 		this.value = value;
 		this.validators = new Array<ValidatorRule<T>>();

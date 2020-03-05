@@ -6,7 +6,7 @@ const ko = require('./koMock');
 describe('FieldArray', () => {
 	describe('constructor', () => {
 		it('initialized() should be false for new obj', (done) => {
-			var fld = new FieldArray(ko, ko.observableArray());
+			var fld = new FieldArray(ko);
 			expect(fld.hasError()).toBe(false);
 			fld.value([1]);
 			expect(fld.hasError()).toBe(false);
@@ -19,7 +19,7 @@ describe('FieldArray', () => {
 describe('FieldArray', () => {
 	describe('validation', () => {
 		it('should not be valid', (done) => {
-			var fld = new FieldArray(ko, ko.observableArray());
+			var fld = new FieldArray(ko);
 			fld.validators.push(new NumberArrayRequired());
 			fld.value([]);
 			fld.validate().then(valid => expect(valid).toBeFalse()).then(done);
@@ -30,7 +30,7 @@ describe('FieldArray', () => {
 describe('FieldArray', () => {
 	describe('validation', () => {
 		it('should be valid', (done) => {
-			var fld = new FieldArray(ko, ko.observableArray());
+			var fld = new FieldArray(ko);
 			fld.validators.push(new NumberArrayRequired());
 			fld.value([1]);
 			fld.validate().then(valid => expect(valid).toBeTrue()).then(done);

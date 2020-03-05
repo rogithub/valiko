@@ -36,12 +36,9 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	 * Adds a new Field to this form object.
 	 * @param val Initial value.
 	 */
-	public add = <T>(val: KnockoutObservable<T> | undefined): KoField<T> => {
+	public add = <T>(val?: KnockoutObservable<T>): KoField<T> => {
 		const self = this;
-
-		let value = val === undefined ? self.ko.observable<T>() : val;
-
-		let field = new Field<T>(self.ko, value);
+		let field = new Field<T>(self.ko, val);
 
 		self.value.push(field);
 
@@ -56,12 +53,10 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	 * Adds a new FieldArray to this form object.
 	 * @param val Initial value.
 	 */
-	public addArray = <T>(val: KnockoutObservableArray<T> | undefined): KoFieldArray<T> => {
+	public addArray = <T>(val?: KnockoutObservableArray<T>): KoFieldArray<T> => {
 		const self = this;
 
-		let value = val === undefined ? self.ko.observableArray<T>() : val;
-
-		let field = new FieldArray<T>(self.ko, value);
+		let field = new FieldArray<T>(self.ko, val);
 		self.value.push(field);
 
 		self.value.subscribe(function (changes: KnockoutArrayChange<T>): void {

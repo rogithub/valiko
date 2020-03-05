@@ -6,7 +6,7 @@ const ko = require('./koMock');
 describe('Field', () => {
 	describe('constructor', () => {
 		it('initialized() should be false for new obj', (done) => {
-			var fld = new Field(ko, ko.observable());
+			var fld = new Field(ko);
 			expect(fld.hasError()).toBeFalse();
 			expect(fld.value()).toBeUndefined();
 
@@ -22,8 +22,7 @@ describe('Field', () => {
 describe('Field', () => {
 	describe('validation', () => {
 		it('should not be valid', (done) => {
-			var fld = new Field(ko, ko.observable());
-			fld.validators.push(new StringRequired());
+			var fld = new Field(ko).with(new StringRequired());
 			expect(fld.value()).toBeUndefined();
 			fld.value("");
 			fld.validate().then(valid => expect(valid).toBeFalse()).then(done);
@@ -34,8 +33,7 @@ describe('Field', () => {
 describe('Field', () => {
 	describe('validation', () => {
 		it('should be valid', (done) => {
-			var fld = new Field(ko, ko.observable());
-			fld.validators.push(new StringRequired());
+			var fld = new Field(ko).with(new StringRequired());
 			expect(fld.value()).toBeUndefined();
 			fld.value("hola");
 			fld.validate().then(valid => expect(valid).toBeTrue()).then(done);
