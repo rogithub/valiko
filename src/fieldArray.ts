@@ -1,5 +1,4 @@
-﻿
-import { ValidatorRule } from './interfaces';
+﻿import { ValidatorRule } from './interfaces';
 import { FieldBase } from "./fieldBase";
 
 /**
@@ -14,9 +13,10 @@ export class FieldArray<T> extends FieldBase<T, KnockoutObservableArray<T>>  {
 	 * @param validators 
 	 * @param value Rules to validate this field's value.
 	 */
-	constructor(ko: KnockoutStatic, validators: ValidatorRule<T[]>[], value: KnockoutObservableArray<T>) {
-		super(ko, validators);
+	constructor(ko: KnockoutStatic, value: KnockoutObservableArray<T>) {
+		super(ko);
 		this.value = value;
+		this.validators = new Array<ValidatorRule<T[]>>();
 
 		const self = this;
 		self.value.subscribe(function (changes: KnockoutArrayChange<T>): void {

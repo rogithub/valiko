@@ -70,17 +70,6 @@ interface KoField<T> extends KoFieldBase<T, KnockoutObservable<T>> { }
 /** Represents a multiple values field in a form. */
 interface KoFieldArray<T> extends KoFieldBase<T, KnockoutObservableArray<T>> { }
 
-
-interface FieldConfig<T> {
-    observable?: KnockoutObservable<T>;
-    validators?: ValidatorRule<T>[];
-}
-
-interface FieldArrayConfig<T> {
-    observable?: KnockoutObservableArray<T>;
-    validators?: ValidatorRule<T[]>[];
-}
-
 /**
  * Interfaces for valiko
  */
@@ -92,7 +81,5 @@ export {
     ValidatorRule,
     KoFieldBase,
     KoField,
-    KoFieldArray,
-    FieldConfig,
-    FieldArrayConfig
+    KoFieldArray
 }

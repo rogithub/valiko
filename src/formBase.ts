@@ -1,4 +1,4 @@
-﻿import { ValidatorRule, KoField, KoFieldArray, FieldArrayConfig, FieldConfig } from './interfaces';
+﻿import { KoField, KoFieldArray } from './interfaces';
 import { DefaultFormValidator } from "./defaultFormValidator";
 import { Field } from "./field";
 import { FieldBase } from "./fieldBase";
@@ -17,8 +17,9 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 	 * @param ko KnockoutStatic.
 	 * @param validators Rules to validate this form's fields.
 	 */
-	constructor(ko: KnockoutStatic, validators: ValidatorRule<FieldBase<any, any>[]>[] = [new DefaultFormValidator<FieldBase<any, any>>("Please fix all errors.")]) {
-		super(ko, validators);
+	constructor(ko: KnockoutStatic) {
+		super(ko);
+		this.validators = [new DefaultFormValidator<FieldBase<any, any>>("Please fix all errors.")];
 		this.value = ko.observableArray<FieldBase<any, any>>();
 		this.history = ko.observableArray<TModel>([]);
 	}
@@ -33,16 +34,14 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 
 	/**
 	 * Adds a new Field to this form object.
-	 * @param config Initial value
-	 * @param validators Validation rules to apply on new Field.
+	 * @param val Initial value.
 	 */
-	public addField<T>(config: FieldConfig<T>): KoField<T> {
+	public add<T>(val: KnockoutObservable<T> | undefined): KoField<T> {
 		const self = this;
 
-		let validators = config.validators === undefined ? [] : config.validators;
-		let value = config.observable === undefined ? self.ko.observable<T>() : config.observable;
+		let value = val === undefined ? self.ko.observable<T>() : val;
 
-		let field = new Field<T>(self.ko, validators, value);
+		let field = new Field<T>(self.ko, value);
 
 		self.value.push(field);
 
@@ -55,16 +54,14 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 
 	/**
 	 * Adds a new FieldArray to this form object.
-	 * @param config Initial value.
-	 * @param validators Validation rules to apply on new FieldArray.
+	 * @param val Initial value.
 	 */
-	public addFieldArray<T>(config: FieldArrayConfig<T>): KoFieldArray<T> {
+	public addArray<T>(val: KnockoutObservableArray<T> | undefined): KoFieldArray<T> {
 		const self = this;
 
-		let validators = config.validators === undefined ? [] : config.validators;
-		let value = config.observable === undefined ? self.ko.observableArray<T>() : config.observable;
+		let value = val === undefined ? self.ko.observableArray<T>() : val;
 
-		let field = new FieldArray<T>(self.ko, validators, value);
+		let field = new FieldArray<T>(self.ko, value);
 		self.value.push(field);
 
 		self.value.subscribe(function (changes: KnockoutArrayChange<T>): void {

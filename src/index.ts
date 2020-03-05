@@ -11,9 +11,7 @@ import {
 	ValidatorRule,
 	KoFieldBase,
 	KoField,
-	KoFieldArray,
-	FieldConfig,
-	FieldArrayConfig
+	KoFieldArray
 } from './interfaces';
 
 import { DefaultFormValidator } from './defaultFormValidator';
@@ -31,8 +29,6 @@ export {
 	KoFieldBase,
 	KoField,
 	KoFieldArray,
-	FieldConfig,
-	FieldArrayConfig,
 	FieldBase,
 	Field,
 	FieldArray,

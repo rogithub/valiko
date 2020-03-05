@@ -14,9 +14,10 @@ export class Field<T> extends FieldBase<T, KnockoutObservable<T>> {
 	 * @param validators Rules to validate this field's value. 
 	 * @param value Initial value.
 	 */
-	constructor(ko: KnockoutStatic, validators: ValidatorRule<T>[], value: KnockoutObservable<T>) {
-		super(ko, validators);
+	constructor(ko: KnockoutStatic, value: KnockoutObservable<T>) {
+		super(ko);
 		this.value = value;
+		this.validators = new Array<ValidatorRule<T>>();
 
 		const self = this;
 		this.value.subscribe(function (newValue: T): void {
