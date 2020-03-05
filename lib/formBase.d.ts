@@ -1,5 +1,5 @@
 /// <reference types="knockout" />
-import { IValidatorRule, IField, IFieldArray } from './interfaces';
+import { IValidatorRule, IField, IFieldArray, IFieldArrayConfig, IFieldConfig } from './interfaces';
 import { FieldBase } from "./fieldBase";
 /**
  * Represents a form with a collection of Fields.
@@ -8,7 +8,8 @@ export declare abstract class FormBase<TModel> extends FieldBase<FieldBase<any, 
     history: KnockoutObservableArray<TModel>;
     value: KnockoutObservableArray<FieldBase<any, any>>;
     /**
-     * Constructs a new form object.
+     * Base class for Forms.
+     * @param ko KnockoutStatic.
      * @param validators Rules to validate this form's fields.
      */
     constructor(ko: KnockoutStatic, validators?: IValidatorRule<FieldBase<any, any>[]>[]);
@@ -17,12 +18,14 @@ export declare abstract class FormBase<TModel> extends FieldBase<FieldBase<any, 
     private addToHistory;
     /**
      * Adds a new Field to this form object.
+     * @param config Initial value
      * @param validators Validation rules to apply on new Field.
      */
-    addField<T>(validators?: IValidatorRule<T>[]): IField<T>;
+    addField<T>(config: IFieldConfig<T>): IField<T>;
     /**
      * Adds a new FieldArray to this form object.
+     * @param config Initial value.
      * @param validators Validation rules to apply on new FieldArray.
      */
-    addFieldArray<T>(validators?: IValidatorRule<T[]>[]): IFieldArray<T>;
+    addFieldArray<T>(config: IFieldArrayConfig<T>): IFieldArray<T>;
 }

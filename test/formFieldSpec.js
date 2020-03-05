@@ -7,7 +7,7 @@ class Form extends FormBase {
 
 	constructor(ko) {
 		super(ko);
-		this.name = this.addField([new StringRequired()]);
+		this.name = this.addField({ validators: [new StringRequired()] });
 	}
 
 	load(model) {

@@ -1,5 +1,4 @@
-﻿
-import { IValidatorRule, IField, IFieldArray } from './interfaces';
+﻿import { IValidatorRule, IField, IFieldArray, IFieldArrayConfig, IFieldConfig } from './interfaces';
 import { DefaultFormValidator } from "./defaultFormValidator";
 import { Field } from "./field";
 import { FieldBase } from "./fieldBase";
@@ -32,14 +31,18 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 		this.history.push(self.retrieve());
 	}
 
-    /**
+	/**
 	 * Adds a new Field to this form object.
+	 * @param config Initial value
 	 * @param validators Validation rules to apply on new Field.
 	 */
-	public addField<T>(validators: IValidatorRule<T>[] = []): IField<T> {
+	public addField<T>(config: IFieldConfig<T>): IField<T> {
 		const self = this;
 
-		let field = new Field<T>(self.ko, validators);
+		let validators = config.validators === undefined ? [] : config.validators;
+		let value = config.observable === undefined ? self.ko.observable<T>() : config.observable;
+
+		let field = new Field<T>(self.ko, validators, value);
 
 		self.value.push(field);
 
@@ -50,13 +53,18 @@ export abstract class FormBase<TModel> extends FieldBase<FieldBase<any, any>, Kn
 		return field;
 	}
 
-    /**
+	/**
 	 * Adds a new FieldArray to this form object.
+	 * @param config Initial value.
 	 * @param validators Validation rules to apply on new FieldArray.
 	 */
-	public addFieldArray<T>(validators: IValidatorRule<T[]>[] = []): IFieldArray<T> {
+	public addFieldArray<T>(config: IFieldArrayConfig<T>): IFieldArray<T> {
 		const self = this;
-		let field = new FieldArray<T>(self.ko, validators);
+
+		let validators = config.validators === undefined ? [] : config.validators;
+		let value = config.observable === undefined ? self.ko.observableArray<T>() : config.observable;
+
+		let field = new FieldArray<T>(self.ko, validators, value);
 		self.value.push(field);
 
 		self.value.subscribe(function (changes: KnockoutArrayChange<T>): void {

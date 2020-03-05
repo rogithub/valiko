@@ -1,9 +1,9 @@
 ﻿
 import { FieldBase } from './fieldBase';
 import { Field } from './field';
-import { FieldArray } from './fieldArray';	
+import { FieldArray } from './fieldArray';
 import { ValidatorBase } from './validatorBase';
-import { 
+import {
 	IValidable,
 	IKoValue,
 	IValidationInfo,
@@ -11,7 +11,9 @@ import {
 	IValidatorRule,
 	IFieldBase,
 	IField,
-	IFieldArray
+	IFieldArray,
+	IFieldConfig,
+	IFieldArrayConfig
 } from './interfaces';
 
 import { DefaultFormValidator } from './defaultFormValidator';
@@ -29,6 +31,8 @@ export {
 	IFieldBase,
 	IField,
 	IFieldArray,
+	IFieldConfig,
+	IFieldArrayConfig,
 	FieldBase,
 	Field,
 	FieldArray,

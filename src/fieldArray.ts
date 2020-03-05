@@ -11,11 +11,12 @@ export class FieldArray<T> extends FieldBase<T, KnockoutObservableArray<T>>  {
 	/**
 	 * Constructs a field array.
 	 * @param ko KnockoutStatic.
-	 * @param validators Rules to validate this field's value.
+	 * @param validators 
+	 * @param value Rules to validate this field's value.
 	 */
-	constructor(ko: KnockoutStatic, validators: IValidatorRule<T[]>[]) {
+	constructor(ko: KnockoutStatic, validators: IValidatorRule<T[]>[], value: KnockoutObservableArray<T>) {
 		super(ko, validators);
-		this.value = this.ko.observableArray<T>();
+		this.value = value;
 
 		const self = this;
 		self.value.subscribe(function (changes: KnockoutArrayChange<T>): void {

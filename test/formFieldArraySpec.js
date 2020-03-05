@@ -7,7 +7,7 @@ class Form extends FormBase {
 
 	constructor(ko) {
 		super(ko);
-		this.numbers = this.addFieldArray([new NumberArrayRequired()]);
+		this.numbers = this.addFieldArray({ validators: [new NumberArrayRequired()] });
 	}
 
 	load(model) {

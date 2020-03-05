@@ -70,6 +70,17 @@ interface IField<T> extends IFieldBase<T, KnockoutObservable<T>> { }
 /** Represents a multiple values field in a form. */
 interface IFieldArray<T> extends IFieldBase<T, KnockoutObservableArray<T>> { }
 
+
+interface IFieldConfig<T> {
+    observable?: KnockoutObservable<T>;
+    validators?: IValidatorRule<T>[];
+}
+
+interface IFieldArrayConfig<T> {
+    observable?: KnockoutObservableArray<T>;
+    validators?: IValidatorRule<T[]>[];
+}
+
 /**
  * Interfaces for valiko
  */
@@ -81,5 +92,7 @@ export {
     IValidatorRule,
     IFieldBase,
     IField,
-    IFieldArray
+    IFieldArray,
+    IFieldConfig,
+    IFieldArrayConfig
 }
