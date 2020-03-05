@@ -6,11 +6,19 @@ const ko = require('./koMock');
 describe('ObsArr', () => {
 	describe('constructor', () => {
 		it('initialized() should be false for new obj', (done) => {
-			var fld = new ObsArr(ko);
-			expect(fld.hasError()).toBe(false);
-			fld.value([1]);
-			expect(fld.hasError()).toBe(false);
-			expect(fld.value()).toEqual([1]);
+			var arr = new ObsArr(ko);
+			expect(arr.initialized()).toBeFalse();
+			expect(arr.wasValidated()).toBeFalse();
+			expect(arr.hasError()).toBeFalse();
+			expect(arr.value()).toEqual([]);
+			arr.value.push(1);
+			arr.validate(); // manual validation
+			
+			expect(arr.value()).toEqual([1]);
+			expect(arr.hasError()).toBeFalse();
+			expect(arr.initialized()).toBeTrue();
+			expect(arr.wasValidated()).toBeTrue();
+
 			done();
 		});
 	});
