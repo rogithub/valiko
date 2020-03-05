@@ -26,4 +26,12 @@ export class FieldArray<T> extends FieldBase<T, KnockoutObservableArray<T>>  {
 
 		}, self, "arrayChange");
 	}
+
+	with = (...validators: ValidatorRule<T[]>[]) : FieldArray<T> => {
+		const self= this;
+		for(let v of validators) {
+			self.validators.push(v);
+		}
+		return self;
+	} 
 }

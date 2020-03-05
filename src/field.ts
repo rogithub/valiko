@@ -29,4 +29,12 @@ export class Field<T> extends FieldBase<T, KnockoutObservable<T>> {
 			self.validate();
 		});
 	}
+
+	with = (...validators: ValidatorRule<T>[]) : Field<T> => {
+		const self= this;
+		for(let v of validators) {
+			self.validators.push(v);
+		}
+		return self;
+	} 
 }

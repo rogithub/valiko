@@ -7,8 +7,7 @@ class Form extends FormBase {
 
 	constructor(ko) {
 		super(ko);
-		this.numbers = this.addArray();
-		this.numbers.validators.push(new NumberArrayRequired());
+		this.numbers = this.addArray().with(new NumberArrayRequired());
 	}
 
 	load(model) {
