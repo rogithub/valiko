@@ -53,7 +53,7 @@ describe('ko', () => {
             obs.subscribe(newValue => {
                 expect(newValue[0]).toBe(1);
                 done();
-            });
+            }, obs, "arrayChange");
 
             obs([1]);
         });

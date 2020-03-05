@@ -59,7 +59,7 @@ export abstract class ObsFrm<TModel> extends ObsBase<ObsBase<any, any>, Knockout
 		let obsArr = new ObsArr<T>(self.ko, val);
 		self.value.push(obsArr);
 
-		self.value.subscribe(function (changes: KnockoutArrayChange<T>): void {
+		obsArr.value.subscribe(function (changes: KnockoutArrayChange<T>): void {
 			self.addToHistory();
 		}, self, "arrayChange");
 

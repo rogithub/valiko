@@ -6,7 +6,7 @@ class ObservableArray {
             this.value = [];
         }
         this.subscribers = [];
-        this.subscribe = (fn) => this.subscribers.push(fn);
+        this.subscribe = (fn, obsArr, strType) => this.subscribers.push(fn);
         this.removeAll = () => this.value = [];
         this.push = (it) => {
             this.value.push(it);
