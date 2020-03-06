@@ -1,4 +1,4 @@
-﻿import { KoObs, KoObsArr } from './interfaces';
+﻿import { ObsExtension, ObsArrExtension } from './interfaces';
 import { FrmRule } from "./frmRule";
 import { Obs } from "./obs";
 import { ObsBase } from "./obsBase";
@@ -25,7 +25,7 @@ export abstract class ObsFrm extends ObsBase<ObsBase<any, any>, KnockoutObservab
 	 * Adds a new Obs to this form object.
 	 * @param val Initial value.
 	 */
-	public add = <T>(val?: KnockoutObservable<T>): KoObs<T> => {
+	public add = <T>(val?: KnockoutObservable<T>): ObsExtension<T> => {
 		const self = this;
 		let obs = new Obs<T>(self.ko, val);
 		self.value.push(obs);
@@ -36,7 +36,7 @@ export abstract class ObsFrm extends ObsBase<ObsBase<any, any>, KnockoutObservab
 	 * Adds a new ObsArr to this form object.
 	 * @param val Initial value.
 	 */
-	public addArr = <T>(val?: KnockoutObservableArray<T>): KoObsArr<T> => {
+	public addArr = <T>(val?: KnockoutObservableArray<T>): ObsArrExtension<T> => {
 		const self = this;
 		let obsArr = new ObsArr<T>(self.ko, val);		
 		self.value.push(obsArr);

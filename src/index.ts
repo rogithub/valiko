@@ -4,14 +4,14 @@ import { Obs } from './obs';
 import { ObsArr } from './obsArr';
 import { RuleBase } from './ruleBase';
 import {
-	KoValidable,
-    KoObservable,
-    KoErrInfo,
-    KoResult,
-    KoRule,
-    KoObsBase,
-    KoObs,
-    KoObsArr
+	ObsOrObsArr,
+    ErrInfo,
+    RuleResult,
+    HasValidate,
+    Rule,
+    ObsExtensionBase,
+    ObsExtension,
+    ObsArrExtension
 } from './interfaces';
 
 import { FrmRule } from './frmRule';
@@ -21,14 +21,14 @@ import { ObsFrm } from './ObsFrm';
  * valiko
  */
 export {
-	KoValidable,
-    KoObservable,
-    KoErrInfo,
-    KoResult,
-    KoRule,
-    KoObsBase,
-    KoObs,
-    KoObsArr,
+	ObsOrObsArr,
+    ErrInfo,
+    RuleResult,
+    HasValidate,
+    Rule,
+    ObsExtensionBase,
+    ObsExtension,
+    ObsArrExtension,
 	ObsBase,
 	Obs,
 	ObsArr,

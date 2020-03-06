@@ -1,11 +1,11 @@
 ﻿
-import { KoRule, KoObsBase } from './interfaces'
+import { Rule, ObsExtensionBase } from './interfaces'
 
 /**
  * Base class for Obs.
  */
-export abstract class ObsBase<T, TT extends KnockoutObservable<T> | KnockoutObservableArray<T>> implements KoObsBase<T, TT> {
-	public rules: KoRule<T | T[]>[];
+export abstract class ObsBase<T, TT extends KnockoutObservable<T> | KnockoutObservableArray<T>> implements ObsExtensionBase<T, TT> {
+	public rules: Rule<T | T[]>[];
 	public abstract value: TT;
 	public errors: KnockoutObservableArray<string>;
 	protected initialized: KnockoutObservable<boolean>;

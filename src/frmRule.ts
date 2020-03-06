@@ -1,10 +1,10 @@
-﻿import { KoResult, KoValidable } from './interfaces';
+﻿import { RuleResult, HasValidate } from './interfaces';
 import { RuleBase } from './ruleBase';
 
 /**
  * Validates all Observables in the form.
  */
-export class FrmRule<T extends KoValidable> extends RuleBase<T[]> {
+export class FrmRule<T extends HasValidate> extends RuleBase<T[]> {
 
     /**
      * Message to display if errors.
@@ -18,7 +18,7 @@ export class FrmRule<T extends KoValidable> extends RuleBase<T[]> {
      * Runs all validation rules in all Observables in form.
      * @param value Current value.
      */
-    public check = async(value?: T[]): Promise<KoResult> => {
+    public check = async(value?: T[]): Promise<RuleResult> => {
         const self = this;
         let isValid = true;
 
