@@ -4,7 +4,7 @@ valiko is a TypeScript plugin that adds validation on top of [knockoutjs](http:/
 
 ## Features
 
-  - Custom validators
+  - Custom validation rules
   - Field validation
   - Form validation
 
