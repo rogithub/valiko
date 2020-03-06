@@ -65,7 +65,10 @@ describe('ko', () => {
             let obs = ko.observableArray([1]);
             expect(obs()[0]).toBe(1);
             expect(obs().length).toBe(1);
-            obs.removeAll();
+            obs.subscribe(it => {
+                expect(obs().length).toBe(0);
+            });
+            obs.removeAll();            
             expect(obs().length).toBe(0);
             done();
         });

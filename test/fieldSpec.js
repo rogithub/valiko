@@ -23,6 +23,22 @@ describe('Obs', () => {
 	});
 });
 
+describe('Obs', () => {
+	describe('constructor', () => {
+		it('initialized() should be true', (done) => {
+			let item = ko.observable("hola");
+			var obs = new Obs(ko, item);
+			obs.initialized(true);
+
+			obs.value("adios")
+
+			expect(obs.initialized()).toBeTrue();
+			expect(obs.value()).toBe("adios");
+			done();
+		});
+	});
+});
+
 
 describe('Obs', () => {
 	describe('validation', () => {

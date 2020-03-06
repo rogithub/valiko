@@ -24,6 +24,23 @@ describe('ObsArr', () => {
 	});
 });
 
+describe('Obs', () => {
+	describe('constructor', () => {
+		it('initialized() should be true', (done) => {
+			let item = ko.observableArray([2]);
+			var obs = new ObsArr(ko, item);
+			obs.initialized(true);
+
+			obs.value([1])
+
+			expect(obs.initialized()).toBeTrue();
+			expect(obs.value()).toEqual([1]);
+			done();
+		});
+	});
+});
+
+
 describe('ObsArr', () => {
 	describe('validation', () => {
 		it('should not be valid', (done) => {
