@@ -1,41 +1,44 @@
 {
-  "name": "@rogithub/valiko",
-  "version": "1.0.0",
-  "description": "validation utils for knockout",
-  "browser": "valiko-min.js",
-  "main": "release/index",
-  "types": "release/index",
-  "scripts": {
-    "build": "rm -rf ./release/ && tsc --declaration",
-    "test": "npm run build && nyc jasmine --config=jasmine.json",
-    "release": "npm run build && nyc jasmine --config=jasmine.json && npm pack"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rogithub/valiko.git"
-  },
-  "keywords": [
-    "knockout",
-    "validation"
-  ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "author": "Rodrigo Jimenez <correo.rodrigo@gmail.com>",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/rogithub/valiko/issues"
-  },
-  "homepage": "https://github.com/rogithub/valiko#readme",
-  "peerDependencies": {
-    "knockout": "^3.5.0"
-  },
-  "devDependencies": {
-    "@types/jasmine": "^3.5.7",
-    "@types/knockout": "^3.4.67",
-    "@types/node": "^13.7.7",
-    "jasmine": "^3.5.0",
-    "nyc": "^15.0.0",
-    "typescript": "^3.8.3"
-  }
+    "name": "@rogithub/valiko",
+    "version": "1.0.0",
+    "description": "validation utils for knockout",
+    "browser": "valiko-min.js",
+    "main": "release/index",
+    "types": "release/index",
+    "scripts": {
+        "build": "rm -rf ./release/ && tsc --declaration",
+        "release": "npm run build && nyc jasmine --config=jasmine.json && npm pack",
+        "test:local": "npm run build && nyc jasmine --config=jasmine.json",
+        "test": "nyc jasmine --config=jasmine.json && nyc report --reporter=text-lcov | coveralls"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rogithub/valiko.git"
+    },
+    "keywords": [
+        "knockout",
+        "validation"
+    ],
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
+    "author": "Rodrigo Jimenez <correo.rodrigo@gmail.com>",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/rogithub/valiko/issues"
+    },
+    "homepage": "https://github.com/rogithub/valiko#readme",
+    "peerDependencies": {
+        "knockout": "^3.5.0"
+    },
+    "devDependencies": {
+        "@types/jasmine": "^3.5.7",
+        "@types/knockout": "^3.4.67",
+        "@types/node": "^13.7.7",
+        "coveralls": "^3.0.9",
+        "jasmine": "^3.5.0",
+        "jasmine-istanbul-reporter": "0.0.0",
+        "nyc": "^15.0.0",
+        "typescript": "^3.8.3"
+    }
 }

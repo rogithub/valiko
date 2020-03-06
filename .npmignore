@@ -6,3 +6,5 @@ jasmine.json
 .gitignore
 .nycrc.json
 tsconfig.json
+.coverals.yml
+.travis.yml
