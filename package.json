@@ -19,6 +19,9 @@
         "knockout",
         "validation"
     ],
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com/"
+    },
     "author": "Rodrigo Jimenez <correo.rodrigo@gmail.com>",
     "license": "Apache-2.0",
     "bugs": {
