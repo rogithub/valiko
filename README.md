@@ -12,28 +12,21 @@ valiko is a TypeScript plugin that adds validation on top of [knockoutjs](http:/
   1. Create your web app.
   2. Add knockout library to it
   3. Add valiko `$ npm install valiko --save-dev`
-  4. If using webpack and declaring knockout on your html
-     add this to webpack.config.js
 
-```javascript
-externals: {
-  'ko': 'ko'
-}
-```
 
 ## Field Usage:
 
-  1. Create a validator by extending ValidatorBase
+  1. Create a validation rule by extending RuleBase
 
   ```javascript
-  import { ValidatorBase, ValidationResult } from 'valiko';
+  import { RuleBase, RuleResult } from 'valiko';
 
-  export class StringRequired extends ValidatorBase<string> {
+  export class StringRequired extends RuleBase<string> {
     constructor() {
       super("Required");
     }
 
-  public check(value?: string): Promise<ValidationResult> {
+  public check(value?: string): Promise<RuleResult> {
     const self = this;
     if (value === null || value === undefined || value.length === 0) {
       return self.toNotValid();
@@ -44,18 +37,18 @@ externals: {
   }
   ```
 
-  2. Create a form by extending `FormBase<T>`
+  2. Create a form by extending `ObsFrm`
 
   ```javascript
 
-  import { KoField, FormBase } from 'valiko';
+  import { ObsExtension, ObsFrm } from 'valiko';
 
   interface Person {
     name: string;
   }
 
-  export class Form extends FormBase<Person> {
-    public name: KoField<string>;
+  export class Form extends FormBase {
+    public name: ObsExtension<string>;
 
     constructor(ko: KnockoutStatic) {
       super(ko);
