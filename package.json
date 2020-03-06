@@ -8,7 +8,7 @@
     "scripts": {
         "build": "rm -rf ./release/ && tsc --declaration",
         "release": "npm run build && nyc jasmine --config=jasmine.json && npm pack",
-        "test:local": "npm run build && nyc jasmine --config=jasmine.json",
+        "test:local": "npm run build && nyc --reporter=text jasmine --config=jasmine.json",
         "test": "nyc jasmine --config=jasmine.json && nyc report --reporter=text-lcov | coveralls"
     },
     "repository": {
