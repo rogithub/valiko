@@ -50,7 +50,7 @@ valiko is a TypeScript plugin that adds validation on top of [knockoutjs](http:/
     name: string;
   }
 
-  export class Form extends FormBase {
+  export class Form extends ObsFrm {
     public name: ObsExtension<string>;
 
     constructor(ko: KnockoutStatic) {
