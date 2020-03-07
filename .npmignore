@@ -8,3 +8,4 @@ jasmine.json
 tsconfig.json
 .coverals.yml
 .travis.yml
+.npmrc
