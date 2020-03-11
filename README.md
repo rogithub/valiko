@@ -3,7 +3,7 @@
 
 # valiko
 
-valiko is a TypeScript plugin that adds validation on top of [knockoutjs](http://knockoutjs.com/).
+[valiko](https://www.npmjs.com/package/valiko) is a TypeScript plugin that adds validation on top of [knockoutjs](http://knockoutjs.com/).
 
 ## Features
 
