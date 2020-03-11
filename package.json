@@ -1,8 +1,7 @@
 {
-    "name": "@rogithub/valiko",
-    "version": "1.0.1",
+    "name": "valiko",
+    "version": "0.0.1",
     "description": "validation utils for knockout",
-    "browser": "valiko-min.js",
     "main": "release/index",
     "types": "release/index",
     "scripts": {
@@ -19,9 +18,6 @@
         "knockout",
         "validation"
     ],
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com/"
-    },
     "author": "Rodrigo Jimenez <correo.rodrigo@gmail.com>",
     "license": "Apache-2.0",
     "bugs": {
