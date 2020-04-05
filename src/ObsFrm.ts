@@ -25,7 +25,7 @@ export abstract class ObsFrm extends ObsBase<ObsBase<any, any>, KnockoutObservab
 	 * Adds a new Obs to this form object.
 	 * @param val Initial value.
 	 */
-	public add = <T>(val?: KnockoutObservable<T>): ObsExtension<T> => {
+	public add = <T>(val?: KnockoutObservable<T>): Obs<T> => {
 		const self = this;
 		let obs = new Obs<T>(self.ko, val);
 		self.value.push(obs);
@@ -36,9 +36,9 @@ export abstract class ObsFrm extends ObsBase<ObsBase<any, any>, KnockoutObservab
 	 * Adds a new ObsArr to this form object.
 	 * @param val Initial value.
 	 */
-	public addArr = <T>(val?: KnockoutObservableArray<T>): ObsArrExtension<T> => {
+	public addArr = <T>(val?: KnockoutObservableArray<T>): ObsArr<T> => {
 		const self = this;
-		let obsArr = new ObsArr<T>(self.ko, val);		
+		let obsArr = new ObsArr<T>(self.ko, val);
 		self.value.push(obsArr);
 		return obsArr;
 	}
